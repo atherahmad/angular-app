@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { asNativeElements, Component, ViewChild } from "@angular/core";
 
 @Component({
     selector:'app-navbar',
@@ -8,9 +8,11 @@ import { Component } from "@angular/core";
 })
 export class NavbarComponent{
   activeAppointment='active';
+  showToggle=true;
+  innerWidth:number;
 
   navLinkSelector=(event)=>{
-      this.activeAppointment=event.target.name
+      this.activeAppointment=event.target.name;
 
   }
         
