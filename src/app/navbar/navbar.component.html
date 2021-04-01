@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Digital Appointments</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item "  >
+          <a [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='active'>Active</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="['nav-link',(activeAppointment=='completed')?'active':'']" href="#" (click)="navLinkSelector($event)" name='completed'>Completed</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="['nav-link',(activeAppointment=='deleted')?'active':'']" href="#" (click)="navLinkSelector($event)" name='deleted'>Deleted</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
