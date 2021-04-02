@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServerComponent } from './server/server.component';
-import { ServersComponent } from './servers/servers.component';
 import { FooterComponent } from './footer/footer.component';
 import { WarningComponent } from './warning/warning.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
@@ -12,7 +11,6 @@ import { SuccessAlertComponent } from './success-alert/success-alert.component';
   declarations: [
     AppComponent,
     ServerComponent,
-    ServersComponent,
     NavbarComponent,
     FooterComponent,
     WarningComponent,
