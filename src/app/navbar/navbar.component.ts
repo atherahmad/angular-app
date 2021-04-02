@@ -1,4 +1,4 @@
-import { asNativeElements, Component, ViewChild } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector:'app-navbar',
@@ -8,12 +8,15 @@ import { asNativeElements, Component, ViewChild } from "@angular/core";
 })
 export class NavbarComponent{
   activeAppointment='active';
-  showToggle=true;
-  innerWidth:number;
+  @Input() authorized:boolean;
+ 
 
   navLinkSelector=(event)=>{
       this.activeAppointment=event.target.name;
 
   }
+
+  loginHandler=()=>this.authorized=true
+  logoutHandler=()=>this.authorized=false
         
 }

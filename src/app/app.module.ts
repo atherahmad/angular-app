@@ -5,6 +5,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { FooterComponent } from './footer/footer.component';
+import { WarningComponent } from './warning/warning.component';
+import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { FooterComponent } from './footer/footer.component';
     ServerComponent,
     ServersComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    WarningComponent,
+    SuccessAlertComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<app-navbar></app-navbar>
+<app-navbar [authorized]='authorized'></app-navbar>
 
 <div > 
     <div class="col-xs-12">
@@ -7,6 +7,8 @@
         <hr>
         <app-server></app-server>
         <app-servers></app-servers>
+        <app-warning></app-warning>
+        <app-success-alert></app-success-alert>
     </div>
 </div>
 <div>
