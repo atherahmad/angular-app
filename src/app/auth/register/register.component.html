@@ -1,0 +1,4 @@
+<p>Register Component</p>
+    <input class="form-control  m-2" type="text" placeholder="Full Name" (input)="onNameChange($event)">
+    <p>Full Name: {{nameTest}}</p>
+    <input class="form-control m-2" type="text" [(ngModel)]="nameTest">    

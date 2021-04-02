@@ -12,10 +12,8 @@ export class ServerComponent{
 
     getServerStatus = () => this.serverStatus
 
-    getServerId = (a) => {
-        console.log("Server id is ", a)
-        return a
-    }
+    getServerId = (a) => a
+    
     constructor(){
         setTimeout(() => this.addNewServer=true, 2000);
     }

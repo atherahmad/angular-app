@@ -1,34 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div (window:resize)="onResize($event)">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <a class="navbar-brand" href="#">Digital Appointments</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-left" id="navbarNav">
-      <ul class="navbar-nav " >
-        <li class="nav-item " data-toggle="collapse" data-target="#navbarNav" >
-          <a [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='home' data-toggle="collapse" data-target="#navbarNav">Home</a>
+      <ul #linkRef class="navbar-nav" data-toggle="collapse" data-target="#navbarNav">
+        <li class="nav-item "  >
+          <a  [ngClass]="['nav-link',(activeAppointment=='home')?'active':'']" href="#" (click)="navLinkSelector($event)" name='home'>Home</a>
         </li>
-        <li class="nav-item " data-toggle="collapse" data-target="#navbarNav" *ngIf="authorized" >
-          <a [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='create' data-toggle="collapse" data-target="#navbarNav">Create</a>
+        <li class="nav-item " *ngIf="authorized" >
+          <a [ngClass]="['nav-link',(activeAppointment=='create')?'active':'']" href="#" (click)="navLinkSelector($event)" name='create'>Create</a>
         </li>
-        <li class="nav-item " data-toggle="collapse" data-target="#navbarNav" *ngIf="authorized" >
-          <a [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='active' data-toggle="collapse" data-target="#navbarNav">Active</a>
+        <li class="nav-item " *ngIf="authorized" >
+          <a  [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='active'>Active</a>
         </li>
-        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" *ngIf="authorized">
-          <a [ngClass]="['nav-link',(activeAppointment=='completed')?'active':'']" href="#" (click)="navLinkSelector($event)" name='completed'>Completed</a>
+        <li class="nav-item" *ngIf="authorized">
+          <a  [ngClass]="['nav-link',(activeAppointment=='completed')?'active':'']" href="#" (click)="navLinkSelector($event)" name='completed'>Completed</a>
         </li>
-        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" *ngIf="authorized">
-          <a [ngClass]="['nav-link',(activeAppointment=='deleted')?'active':'']" href="#" (click)="navLinkSelector($event)" name='deleted'>Deleted</a>
+        <li class="nav-item" *ngIf="authorized">
+          <a  [ngClass]="['nav-link',(activeAppointment=='deleted')?'active':'']" href="#" (click)="navLinkSelector($event)" name='deleted'>Deleted</a>
         </li>
-        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
-          <a [ngClass]="['nav-link',(activeAppointment=='deleted')?'active':'']" href="#" (click)="navLinkSelector($event)" name='contact'>Contact</a>
+        <li class="nav-item">
+          <a  [ngClass]="['nav-link',(activeAppointment=='contact')?'active':'']" href="#" (click)="navLinkSelector($event)" name='contact'>Contact</a>
         </li>
-        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" *ngIf="authorized" (click)="logoutHandler()">
-          <a class="nav-link" href="#">Logout</a>
+        <li class="nav-item" *ngIf="authorized" >
+          <a  [ngClass]="['nav-link',(activeAppointment=='login')?'active':'']" class="nav-link" href="#" (click)="navLinkSelector($event)" name='logout'>Logout</a>
         </li>
-        <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" *ngIf="!authorized" (click)="loginHandler()">
-          <a class="nav-link" href="#">Login</a>
+        <li class="nav-item" *ngIf="!authorized" >
+          <a  [ngClass]="['nav-link',(activeAppointment=='login')?'active':'']" class="nav-link" href="#"  href="#" (click)="loginHandler($event)" name='login' >Login</a>
         </li>
       </ul>
     </div>
   </nav>
+</div>
