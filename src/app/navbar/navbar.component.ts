@@ -11,11 +11,12 @@ export class NavbarComponent{
   collapseScreenStatus:boolean = false;
   @Input() authorized:boolean;
   @ViewChild('linkRef') linkRef: ElementRef;
+
   
 
 
   constructor() {
-    this.onResize
+ 
   }
   navLinkSelector=(event)=>{
     this.activeAppointment = event.target.name;
@@ -24,16 +25,10 @@ export class NavbarComponent{
 
   }
 
-  loginHandler = (event) => {
-    this.authorized = true
-   // this.navLinkSelector(event)
+  logoutHandler = () => {
+    this.authorized = false;
+    console.log(this.authorized);
   }
-  logoutHandler = (event) => {
-    this.authorized = false
-    this.navLinkSelector(event)
-  }
-
-  
 
 
   onResize = (event) => {

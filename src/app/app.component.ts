@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title:string;
-  authorized:boolean = true;
- 
+  authorized: boolean = true;
   
+  parentFunction(data:boolean) {
+    console.log("parent function called ", data)
+  }
 }

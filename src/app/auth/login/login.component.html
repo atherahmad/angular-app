@@ -1,14 +1,18 @@
 <div class="container">
-    <div class="form-group col-lg-4 col-md-8 col-sm-10 ">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email" (input)="changeHandler()">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group col-lg-4 col-md-8 col-sm-10">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="password" (input)="changeHandler()">
-    </div>
+  <div class=' row mySignin'>
+    <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <div class="mySignin-form">
+            <div class="h2-box">
+                <h2 clsassName="mb-5 p-2" >Sign In</h2>
+              </div>
+                  <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email">
+                  <input class="form-control input-lg mt-3"  type="password" placeholder="Enter your password">
+                  <button class="myBlueButton-lg" type="submit">Sign in</button>
+                  <p class="mt-1 myText text-dark">Are you not registered with us? <a  class="badge badge-info active" routerLink='/register' >Register!</a></p>
+                  <p class="mt-1 myText">Forgot Password?
+                  <strong class="L" routerLink='/register' ><a  class="badge badge-warning active" routerLink='/forgetpassword' > Click here</a></strong></p>
 
-    <button type="submit" class="btn btn-primary" [disabled]="email==''|| password==''" (click)="showCredential()">Show Credentials</button>
-    <p [hidden]="!displayCredential">Email : {{email}} and Password : {{password}}</p>
+          </div>
+      </div>         
+  </div>
 </div>

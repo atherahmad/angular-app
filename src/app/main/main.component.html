@@ -1,0 +1,19 @@
+<div class="container">
+<input class="m-3" type="text" [(ngModel)]="serverName">
+<button class="btn btn-primary m-2 p-3" (click)="createServer()">Add Server</button>
+<app-server *ngFor="let server of servers"></app-server>
+
+<div>
+    <button class="btn btn-warning p-2 m-2" (click)="toggleText()">Toggle for Show Text</button>
+
+    <p [hidden]="!showHiddenText"> I am a hidden Text</p>
+</div>
+<ul>
+    <div [ngClass]="{'blue':i > 4}" *ngFor="let timeStamp of timeStamps; let i = index">{{timeStamp}}</div>
+</ul> 
+
+</div>  
+
+
+<app-auth-reset></app-auth-reset>
+<app-auth-change></app-auth-change>

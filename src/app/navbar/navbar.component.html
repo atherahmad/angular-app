@@ -1,34 +1,46 @@
 <div (window:resize)="onResize($event)">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-    <a class="navbar-brand" href="#">Digital Appointments</a>
+    <a class="navbar-brand" >Digital Appointments</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-left" id="navbarNav">
       <ul #linkRef class="navbar-nav" data-toggle="collapse" data-target="#navbarNav">
         <li class="nav-item "  >
-          <a  [ngClass]="['nav-link',(activeAppointment=='home')?'active':'']" href="#" (click)="navLinkSelector($event)" name='home'>Home</a>
+          <a *ngIf="authorized;else homePage " routerLinkActive="active " class="nav-link" routerLink='/dashboard' name='dashboard'>Dashboard</a>
+          <ng-template #homePage>
+            <a routerLinkActive="active " class="nav-link" routerLink='/' name='home'>Home</a>
+          </ng-template>
         </li>
+
         <li class="nav-item " *ngIf="authorized" >
-          <a [ngClass]="['nav-link',(activeAppointment=='create')?'active':'']" href="#" (click)="navLinkSelector($event)" name='create'>Create</a>
+          <a routerLinkActive="active " class="nav-link" routerLink='/create' name='create'>Create</a>
         </li>
+
         <li class="nav-item " *ngIf="authorized" >
-          <a  [ngClass]="['nav-link',(activeAppointment=='active')?'active':'']" href="#" (click)="navLinkSelector($event)" name='active'>Active</a>
+          <a  routerLinkActive="active " class="nav-link" routerLink='/active' name='active'>Active</a>
         </li>
+
         <li class="nav-item" *ngIf="authorized">
-          <a  [ngClass]="['nav-link',(activeAppointment=='completed')?'active':'']" href="#" (click)="navLinkSelector($event)" name='completed'>Completed</a>
+          <a  routerLinkActive="active current" class="nav-link" routerLink='/completed' name='completed'>Completed</a>
         </li>
+
         <li class="nav-item" *ngIf="authorized">
-          <a  [ngClass]="['nav-link',(activeAppointment=='deleted')?'active':'']" href="#" (click)="navLinkSelector($event)" name='deleted'>Deleted</a>
+          <a  routerLinkActive="active " class="nav-link" routerLink='/deleted' name='deleted'>Deleted</a>
+        </li>
+
+        <li class="nav-item">
+          <a  routerLinkActive="active " class="nav-link" routerLink='/contact' name='contact'>Contact</a>
         </li>
         <li class="nav-item">
-          <a  [ngClass]="['nav-link',(activeAppointment=='contact')?'active':'']" href="#" (click)="navLinkSelector($event)" name='contact'>Contact</a>
+          <a  routerLinkActive="active " class="nav-link" routerLink='/reset' name='reset'>Reset Password</a>
         </li>
-        <li class="nav-item" *ngIf="authorized" >
-          <a  [ngClass]="['nav-link',(activeAppointment=='login')?'active':'']" class="nav-link" href="#" (click)="navLinkSelector($event)" name='logout'>Logout</a>
-        </li>
-        <li class="nav-item" *ngIf="!authorized" >
-          <a  [ngClass]="['nav-link',(activeAppointment=='login')?'active':'']" class="nav-link" href="#"  href="#" (click)="loginHandler($event)" name='login' >Login</a>
+
+        <li class="nav-item" >
+          <a  *ngIf="authorized; else notLoggedIn" routerLinkActive="active " class="nav-link" routerLink='/logout' routerLink='/logout'  name='logout' (click)='logoutHandler()'>Logout</a>
+          <ng-template #notLoggedIn>
+            <a  routerLinkActive="active " class="nav-link" routerLink='/login'  name='login'>Login</a>
+          </ng-template>
         </li>
       </ul>
     </div>

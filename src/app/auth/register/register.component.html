@@ -1,4 +1,67 @@
-<p>Register Component</p>
-    <input class="form-control  m-2" type="text" placeholder="Full Name" (input)="onNameChange($event)">
-    <p>Full Name: {{nameTest}}</p>
-    <input class="form-control m-2" type="text" [(ngModel)]="nameTest">    
+<div class="container">
+    <div id="signup" class='mySignin mt-5'>
+        <form >
+                <div class="mySignin-form mt-3 mb-3">
+                    <div class="h2-box-signup ">
+                        <h2 class="mb-5" >Register</h2>
+                    </div>
+                </div>
+                <div class="container">
+
+                    <input
+                        label="First Name"
+                        type="name"
+                        name="firstName"
+                        class="form-control input-lg mt-2"
+                        placeholder="First Name"
+                    />
+                    <p class="sText"></p>
+
+                    <input
+                        label="Last Name"
+                        type="name"
+                        name="lastName"
+                        class="form-control input-lg mt-2"
+                        placeholder="Last Name"
+                    />
+                    <p class="sText"></p>
+                    <input
+                        label="Email"
+                        type="email"
+                        name="email"
+                        class="form-control input-lg mt-2"
+                        placeholder="Email"
+                    />
+                    <p class="sText"></p>
+                    <input
+                        label="Password"
+                        type="password"
+                        name="pass"
+                        class="form-control input-lg mt-2"
+                        placeholder="Password"
+                        
+                    />
+                    <p class="sText"></p>
+
+                    <input
+                        id="standard-password-input"
+                        label="Confirm Password"
+                        type="password"
+                        name="confirmPass"
+                        class="form-control input-lg mt-2"
+                        placeholder="Confirm Password"
+                    />
+                    <p class="sText"></p>
+
+                    <div class="row justify-content-center">
+                    <button class="myRedButton-lg m-2 mt-4 w-100" type='submit'>
+                        Submit
+                    </button>
+                    </div>
+                    <p class="sText"></p>
+                    <p class="sText"></p>
+                    <p class="mt-5 myText text-dark">Are you already registered with us? <a  class="badge badge-info active" routerLink='/login' >Login Here!</a></p>
+                   </div>
+        </form>
+    </div>
+</div>

@@ -1,2 +1,4 @@
-<h4>Server Id {{getServerId(20)}} is currently {{getServerStatus()}} from {{20+20}} minutes</h4>
-<button class="btn btn-primary m-3 p-3" [disabled]='!addNewServer'>Property Binding</button>
+<p [ngStyle]="{backgroundColor: getColor()}"
+   [ngClass]="{online:serverStatus ==='online'}">
+    Server Id {{getServerId(20)}} is currently {{getServerStatus()}} from {{20+20}} minutes
+</p>
