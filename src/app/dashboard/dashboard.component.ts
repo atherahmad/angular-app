@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.component.html',
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
     styleUrls: [
-        './main.component.css',
+        './dashboard.component.css',
         ]
 })
 
-export class MainComponent{
+export class DashboardComponent{
     servers = ['First Server', 'Second Server'];
     serverName: string;
     showHiddenText: boolean = false;

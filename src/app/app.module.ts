@@ -10,12 +10,21 @@ import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import {RouterModule} from '@angular/router'
-import { MainComponent } from './main/main.component';
-import { ContactComponent } from './main/contact/contact.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ContactComponent } from './contact/contact.component';
 import { ChangePasswordComponent } from './auth/changepassword/change.component';
 import { ResetPassword } from './auth/resetpassword/reset.component';
 import { ForgetPassword } from './auth/forgetpassword/forget.component';
+import { CreateAppointment } from './appointments/create/create.component';
+import { AppRoutingModule } from './app.routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
+import {MatInputModule} from '@angular/material/input'
+
 
 @NgModule({
   declarations: [
@@ -28,47 +37,25 @@ import { ForgetPassword } from './auth/forgetpassword/forget.component';
     LoginComponent,
     RegisterComponent,
     ServerComponent,
-    MainComponent,
+    DashboardComponent,
     ContactComponent,
     ChangePasswordComponent,
-    ResetPassword
+    ResetPassword,
+    CreateAppointment,
+    ForgetPassword,
+    HomeComponent
+  
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: MainComponent,
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
-        path: 'contact',
-        component: ContactComponent
-      },
-
-      {
-        path: 'login',
-        component: LoginComponent,
-      
-      },
-      {
-        path: 'reset',
-        component: ResetPassword,
-      
-      },
-      {
-        path: 'forgetpassword',
-        component: ForgetPassword
-      },
-      {
-        path: '**',
-        component: WarningComponent
-      }
-    ])
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
