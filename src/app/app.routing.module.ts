@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateAppointment } from './appointments/create/create.component';
-import { EditAppointment } from './appointments/edit/edit.component';
 import { ForgetPassword } from './auth/forgetpassword/forget.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -43,10 +42,6 @@ const routes: Routes = [
             path: 'createappointment',
             component: CreateAppointment
         },
-        {
-            path: 'completed',
-            component: EditAppointment
-        },  
         {
             path: '',
             component: HomeComponent,

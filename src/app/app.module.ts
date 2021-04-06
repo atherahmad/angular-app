@@ -23,7 +23,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
-import {MatInputModule} from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { StoreService } from './store.service';
+import {HttpClientModule} from '@angular/common/http'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -55,9 +58,14 @@ import {MatInputModule} from '@angular/material/input'
     MatIconModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatInputModule
+    MatFormFieldModule,
+    MatSelectModule,
+    HttpClientModule,
+    
+
+
   ],
-  providers: [],
+  providers: [StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
