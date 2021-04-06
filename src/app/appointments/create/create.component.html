@@ -59,8 +59,8 @@
     <mat-form-field appearance="fill" class="select-panel">
       <mat-label>Available Time Slots</mat-label>
       <mat-select (selectionChange)="log($event.value)">
-        <mat-option *ngFor="let store of stores" [value]="store.id">
-          {{store.name}}
+        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber">
+          Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}}-{{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
         </mat-option>
       </mat-select>
     </mat-form-field>

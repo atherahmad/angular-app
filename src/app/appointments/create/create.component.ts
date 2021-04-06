@@ -34,35 +34,27 @@ export class CreateAppointment{
     ];
     arrayOfSlots: Array<any> = [];
 
-    timeSloter(startTime: string, closeTime: string, slotDuration: string) {
+    timeSloter(startingTime: string, closingTime: string, slotLimit: string, capacity:number) {
 
-        let slotArray: Array<string>;
- 
-        let b = 1;
-        let numberOfSlots = (((+closeTime % 100) + Math.floor(((+closeTime - (+closeTime % 100)) / 100) * 60)) - ((+startTime % 100) + Math.floor(((+startTime - (+startTime % 100)) / 100) * 60))) / +slotDuration;
+        let startTime = +startingTime;
+        let closeTime = +closingTime;
+        let slotDuration = +slotLimit;
 
-        let tempTime = +startTime;
-        let endTime;
+        let numberOfSlots = (((closeTime % 100) + Math.floor(((closeTime - (closeTime % 100)) / 100) * 60)) - ((startTime % 100) + Math.floor(((startTime - (startTime % 100)) / 100) * 60))) / slotDuration;
+
+        let tempTime = startTime;
+        let endTime:number;
         
         for (let i = 1; i <= numberOfSlots; i++) {
 
-            if (((tempTime + +slotDuration) % 100) >= 60) {
-                endTime=(((tempTime + +slotDuration) % 100) - 60) + (100-((tempTime + +slotDuration) % 100)) + (tempTime+ +slotDuration)
+            if (((tempTime + slotDuration) % 100) >= 60) {
+                endTime = (((tempTime + slotDuration) % 100) - 60) + (100 - ((tempTime + slotDuration) % 100)) + (tempTime + slotDuration)
             }
             else
-            endTime=tempTime+ +slotDuration
-            this.arrayOfSlots.push({ start: tempTime, end: `${endTime}` });
-            tempTime=endTime
-
-
-    }
-
-        console.log(numberOfSlots, "it is  no of slot")
-        console.log(this.arrayOfSlots, "it is  no of slot")
-
-
-        return slotArray
-        
+                endTime = tempTime + slotDuration;
+            this.arrayOfSlots.push({ slotNumber:i,appointmentStartTime: ('0'+tempTime).slice(-4), appointmentEndTime: ('0'+endTime).slice(-4), availableBookings:capacity });
+            tempTime = endTime;
+        }
     }
 
     
@@ -73,7 +65,7 @@ export class CreateAppointment{
             this.years.push(2020 + i);
         }
 
-        this.timeSloter('0845','1430','20')
+        this.timeSloter('0845','1730','30',20)
      }
     
     ngOnInit() {
