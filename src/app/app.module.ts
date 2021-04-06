@@ -25,8 +25,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatSelectModule } from '@angular/material/select'
 import { StoreService } from './services/store/store.service';
-import {HttpClientModule} from '@angular/common/http'
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {TokenInterceptorService} from './token-interceptor.service'
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
   ],
-  providers: [StoreService],
+  providers: [StoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

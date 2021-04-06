@@ -30,7 +30,7 @@ const routes: Routes = [
         
         },
         {
-            path: 'reset',
+            path: 'resetpassword/:id/:token',
             component: ResetPassword,
         
         },

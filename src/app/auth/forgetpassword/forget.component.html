@@ -6,7 +6,7 @@
                     <h2 class="mb-5 p-2">Reset Password</h2>
                 </div>
                 <div class="resetModal-center justify-content-center">
-                    <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email">
+                    <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email" [(ngModel)]="email" (change)="changeHandler()">
                     <p class="mt-2 myText2">
                     <strong>
                     Please provide your email address to reset password.
@@ -17,9 +17,12 @@
                     <button class="myRedButton-lg">
                     Close
                     </button>
-                    <button class="myOrangeButton-lg ml-1">
+                    <button class="myOrangeButton-lg ml-1" type="button" (click)="resetHandler()">
                     Reset
                     </button>
+                </div>
+                <div class="resetModal-btn justify-content-center">
+                    <p class="text-danger" *ngIf="showError">Please fill out the email field.</p>
                 </div>
             </div>
         </div>
