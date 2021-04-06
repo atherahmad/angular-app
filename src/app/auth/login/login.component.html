@@ -5,9 +5,10 @@
             <div class="h2-box">
                 <h2 clsassName="mb-5 p-2" >Sign In</h2>
               </div>
-                  <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email">
-                  <input class="form-control input-lg mt-3"  type="password" placeholder="Enter your password">
-                  <button class="myBlueButton-lg" type="submit">Sign in</button>
+                  <input class="form-control input-lg mt-3"  type="email" placeholder="Enter your email" [(ngModel)]="email" (change)="changeHandler()">
+                  <input class="form-control input-lg mt-3"  type="password" placeholder="Enter your password" [(ngModel)]="password" (change)="changeHandler()">
+                  <small class="text-danger" *ngIf="showWarningText">Please fill out both fields.</small>
+                  <button class="myBlueButton-lg" type="button" (click)="loginHandler()"> Sign in </button>
                   <p class="mt-1 myText text-dark">Are you not registered with us? <a  class="badge badge-info active" routerLink='/register' >Register!</a></p>
                   <p class="mt-1 myText">Forgot Password?
                   <strong class="L" routerLink='/register' ><a  class="badge badge-warning active" routerLink='/forgetpassword' > Click here</a></strong></p>

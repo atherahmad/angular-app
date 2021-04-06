@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
+import { LoginService } from "src/app/services/auth/login.service";
 
 @Component({
     selector: 'app-auth-login',
@@ -12,22 +13,36 @@ export class LoginComponent{
     password: string = '';
     validInput: boolean = false;
     @Input() authorized: boolean;
-    @Output() parentFunction: EventEmitter<any>= new EventEmitter()
+    @Output() parentFunction: EventEmitter<any> = new EventEmitter()
+    showWarningText: boolean = false;
     
-    constructor(private router:Router) {
+    constructor(private authService:LoginService) {
         
-        console.log(this.authorized, "in app")
     }
 
     changeHandler = () => {
-        if (this.email && this.password) this.validInput = true
+    
+        if (this.email && this.password) this.validInput = true;
+
     }
 
     loginHandler = () => {
-        this.authorized = true;
-        this.router.navigate(['/register'])
-        this.parentFunction.emit(true)
-        console.log(this.parentFunction)
+        //this.router.navigate(['/register'])
+        //this.parentFunction.emit(true)
+        const loginObserver = {
+            next: x => console.log("User logged in"),
+            error: err=> console.log(err)
+            
+        }
+        let modal = {data:{
+            email: this.email,
+            pass: this.password,
+          }}
+
+        if (this.validInput)
+            this.authService.login(modal).subscribe(loginObserver)
+
+        else this.showWarningText = true;
         
     }
 

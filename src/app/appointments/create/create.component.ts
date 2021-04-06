@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { StoreService } from "src/app/store.service";
+import { StoreService } from "../../services/store/store.service";
 
 @Component({
     selector: 'app-appointment-create',

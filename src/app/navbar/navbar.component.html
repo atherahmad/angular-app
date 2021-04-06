@@ -35,12 +35,11 @@
         <li class="nav-item">
           <a  routerLinkActive="active " class="nav-link" routerLink='/reset' name='reset'>Reset Password</a>
         </li>
-
-        <li class="nav-item" >
+         <li class="nav-item" >
           <a  *ngIf="authorized; else notLoggedIn" routerLinkActive="active " class="nav-link" routerLink='/logout' routerLink='/logout'  name='logout' (click)='logoutHandler()'>Logout</a>
           <ng-template #notLoggedIn>
             <a  routerLinkActive="active " class="nav-link" routerLink='/login'  name='login'>Login</a>
-          </ng-template>
+          </ng-template> 
         </li>
       </ul>
     </div>
