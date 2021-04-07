@@ -9,7 +9,7 @@
                   <input class="form-control input-lg mt-3"  type="password" placeholder="Enter your password" [(ngModel)]="password" (change)="changeHandler()">
                   <small class="text-danger" *ngIf="showWarningText">Please fill out both fields.</small>
                   <button class="myBlueButton-lg" type="button" (click)="loginHandler()"> Sign in </button>
-                  <p class="mt-1 myText text-dark">Are you not registered with us? <a  class="badge badge-info active" routerLink='/register' >Register!</a></p>
+                  <p class="mt-1 myText text-dark">Are you not registered with us? <a  class="badge badge-dark active" routerLink='/registeration' >Register!</a></p>
                   <p class="mt-1 myText">Forgot Password?
                   <strong class="L" routerLink='/register' ><a  class="badge badge-warning active" routerLink='/forgetpassword' > Click here</a></strong></p>
 

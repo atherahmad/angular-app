@@ -11,7 +11,6 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ContactComponent } from './contact/contact.component';
 import { ChangePasswordComponent } from './auth/changepassword/change.component';
 import { ResetPassword } from './auth/resetpassword/reset.component';
 import { ForgetPassword } from './auth/forgetpassword/forget.component';
@@ -24,10 +23,13 @@ import { HomeComponent } from './home/home.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatSelectModule } from '@angular/material/select'
-import { StoreService } from './services/store/store.service';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {TokenInterceptorService} from './token-interceptor.service'
+import { StoreRegistration } from './storeregistration/registration/registration.component';
+import { CreateStoreService } from './services/store/create.service';
+import { ContactService } from './contactus/contactus.service';
+import { ContactComponent } from './contactus/contactus.component';
 
 
 @NgModule({
@@ -42,12 +44,13 @@ import {TokenInterceptorService} from './token-interceptor.service'
     RegisterComponent,
     ServerComponent,
     DashboardComponent,
-    ContactComponent,
     ChangePasswordComponent,
     ResetPassword,
     CreateAppointment,
     ForgetPassword,
-    HomeComponent
+    HomeComponent,
+    StoreRegistration,
+    ContactComponent
   
   ],
   imports: [
@@ -66,7 +69,7 @@ import {TokenInterceptorService} from './token-interceptor.service'
 
 
   ],
-  providers: [StoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  providers: [CreateStoreService,ContactService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

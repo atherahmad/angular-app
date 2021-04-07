@@ -7,9 +7,14 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 
 })
 export class NavbarComponent{
-  activeAppointment='active';
+  activeAppointment='home';
   collapseScreenStatus:boolean = false;
-  @Input() authorized:boolean;
+  @Input() authorized: boolean;
+  @Input() setAuthorized: () => void;
+  @Input() setUnAuthorized: () => void;
+
+
+
   @ViewChild('linkRef') linkRef: ElementRef;
 
   
@@ -18,16 +23,15 @@ export class NavbarComponent{
   constructor() {
  
   }
-  navLinkSelector=(event)=>{
-    this.activeAppointment = event.target.name;
-    this.authorized=false
+  navLinkSelector = (event) => {
+    console.log(event.name)
     
-
+    this.activeAppointment = event.name;    
   }
 
   logoutHandler = () => {
-    this.authorized = false;
-    console.log(this.authorized);
+    this.setUnAuthorized();
+    localStorage.removeItem("c2c-token")
   }
 
 

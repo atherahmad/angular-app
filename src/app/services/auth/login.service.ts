@@ -15,7 +15,7 @@ export class LoginService {
   }
   login = (modal: any) => {
 
-    return this.http.post(this.authUrl + 'api/auth/signin', modal,).pipe(
+    return this.http.post(this.authUrl + 'api/auth/signin', modal).pipe(
       map((response: any) => {
         const user = response;
           if (user.status == "success") {

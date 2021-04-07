@@ -1,0 +1,95 @@
+<div class="container">
+    <div  class='mySignin mt-5'>
+        <form >
+                <div class="mySignin-form mt-3 mb-3">
+                    <div class="h2-box-signup ">
+                        <h2 class="mb-5 heading-store" >Store</h2>
+                    </div>
+                </div>
+               
+                <div class="container" *ngIf="!successfullRegistration">
+                    <input
+                        type="text"
+                        name="storeName"
+                        class="form-control input-lg mt-2"
+                        placeholder="Store Name"
+                        [(ngModel)]="storeDetails.storeName"
+                    />
+                    <input
+                        type="text"
+                        name="storeAddress"
+                        class="form-control input-lg mt-2"
+                        placeholder="Store Address"
+                        [(ngModel)]="storeDetails.storeAddress"
+                    />
+                    <div class="row mt-2">
+                        <div class="col">
+                            <select class="form-control" (change)="optionSelectHandler($event)" name="openingHours" >
+                                <option value="">Opening Time</option>
+                                <option *ngFor="let hour of openingHoursArray" [value]="hour.id">{{hour.value}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" (change)="optionSelectHandler($event)" name="closingHours">
+                                <option value="">Closing Time</option>
+                                <option *ngFor="let hour of closingHoursArray" [value]="hour.id">{{hour.value}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+
+                            <select class="form-control" (change)="optionSelectHandler($event)" name="personsPerSlot">
+                                <option value="">Allowed Persons / Slot</option>
+                                <option *ngFor="let allowedPerson of allowedPersonsArray" [value]="allowedPerson.id">{{allowedPerson.value}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" (change)="optionSelectHandler($event)" name="slotDuration">
+                                <option value="">Slot Duration</option>
+                                <option *ngFor="let slot of slotsArray" [value]="slot.id">{{slot.value}} Mins</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control input-lg mt-2"
+                        placeholder="Enter your Email"
+                        [(ngModel)]="storeDetails.email"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control input-lg mt-2"
+                        placeholder="Choose Password"
+                        [(ngModel)]="storeDetails.password"
+                    />
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        class="form-control input-lg mt-2"
+                        placeholder="Confirm Password"
+                        [(ngModel)]="storeDetails.confirmPassword"
+                    />
+                    <p class="sText" *ngIf="passwordMatchError">Passowrds must match</p>
+
+                    <div class="row justify-content-center">
+                    <button class="myRedButton-lg m-2 mt-4 w-100" type='button' (click)="storeRegistrationHandler()" >
+                        Register
+                    </button>
+                    </div>
+                    <p class="sText" *ngIf="responseError">{{responseErrorText}}</p>
+                    <p class="mt-5 myText text-dark">Are you already registered with us? <a  class="badge badge-info active" routerLink='/login' >Login Here!</a></p>
+                
+                </div>
+                <div class="container mt-5 mb-5" *ngIf="successfullRegistration">
+                    <h4>You have successfully Registered with us. We have sent you confirmation email, please confirm that.</h4>
+                    <button class="myRedButton-lg m-2 mb-5 mt-5 w-100" routerLink='/login' >
+                        Go To Login
+                    </button>
+                </div>
+        </form>
+    </div>
+</div>

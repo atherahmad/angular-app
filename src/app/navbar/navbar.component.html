@@ -5,20 +5,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-left" id="navbarNav">
-      <ul #linkRef class="navbar-nav" data-toggle="collapse" data-target="#navbarNav">
-        <li class="nav-item "  >
-          <a *ngIf="authorized;else homePage " routerLinkActive="active " class="nav-link" routerLink='/dashboard' name='dashboard'>Dashboard</a>
-          <ng-template #homePage>
-            <a routerLinkActive="active " class="nav-link" routerLink='/' name='home'>Home</a>
-          </ng-template>
+      <ul #linkRef class="navbar-nav" data-toggle="collapse" data-target="#navbarNav" >
+        <li class="nav-item" *ngIf="!authorized"  >
+          <a routerLinkActive="active " class="nav-link" routerLink='/home' name='home'>Home</a>
+        </li>
+        <li>
+          <a *ngIf="authorized" routerLinkActive="active " class="nav-link" routerLink='/dashboard' name='dashboard'>Dashboard</a>
+        </li>
+        <li class="nav-item " *ngIf="!authorized" >
+          <a routerLinkActive="active " class="nav-link" routerLink='/registeration' name='registeration'>Register</a>
         </li>
 
         <li class="nav-item " *ngIf="authorized" >
-          <a routerLinkActive="active " class="nav-link" routerLink='/createappointment' name='create'>Create</a>
+          <a routerLinkActive="active " class="nav-link" routerLink='/createappointment' name='create' >Create</a>
         </li>
 
         <li class="nav-item " *ngIf="authorized" >
-          <a  routerLinkActive="active " class="nav-link" routerLink='/active' name='active'>Active</a>
+          <a  routerLinkActive="active " class="nav-link" routerLink='/active' name='active' >Active</a>
         </li>
 
         <li class="nav-item" *ngIf="authorized">
@@ -32,14 +35,14 @@
         <li class="nav-item">
           <a  routerLinkActive="active " class="nav-link" routerLink='/contact' name='contact'>Contact</a>
         </li>
-        <li class="nav-item">
-          <a  routerLinkActive="active " class="nav-link" routerLink='/reset' name='reset'>Reset Password</a>
+        <li class="nav-item" *ngIf="!authorized">
+          <a  routerLinkActive="active " class="nav-link" routerLink='/store/registration' name='storeregistration'>Store Registration</a>
         </li>
-         <li class="nav-item" >
-          <a  *ngIf="authorized; else notLoggedIn" routerLinkActive="active " class="nav-link" routerLink='/logout' routerLink='/logout'  name='logout' (click)='logoutHandler()'>Logout</a>
-          <ng-template #notLoggedIn>
-            <a  routerLinkActive="active " class="nav-link" routerLink='/login'  name='login'>Login</a>
-          </ng-template> 
+        <li class="nav-item" >
+          <a  *ngIf="authorized" routerLinkActive="active " class="nav-link"  name='logout' (click)='logoutHandler()'>Logout</a>
+        </li>
+        <li>
+          <a  *ngIf="!authorized" routerLinkActive="active " class="nav-link" routerLink='/login'  name='login'>Login</a>
         </li>
       </ul>
     </div>
