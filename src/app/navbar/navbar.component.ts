@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector:'app-navbar',
@@ -20,7 +21,7 @@ export class NavbarComponent{
   
 
 
-  constructor() {
+  constructor(private router:Router) {
  
   }
   navLinkSelector = (event) => {
@@ -31,6 +32,7 @@ export class NavbarComponent{
 
   logoutHandler = () => {
     this.setUnAuthorized();
+    this.router.navigateByUrl('/');
     localStorage.removeItem("c2c-token")
   }
 

@@ -6,7 +6,7 @@ import { ForgetPassword } from './auth/forgetpassword/forget.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPassword } from './auth/resetpassword/reset.component';
-import { ContactComponent } from './contactus/contactus.component';
+import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { StoreRegistrationConirmation } from './storeregistration/confirmation/confirmation.comoponent';
@@ -27,15 +27,17 @@ const routes: Routes = [
             component: RegisterComponent
         },
     {
-        path: 'contact',
-        component: ContactComponent
-    },
-    {
 
             path: 'login',
             component: LoginComponent,
         
-        },
+    },
+    {
+
+        path: 'contact',
+        component: ContactComponentComponent,
+    
+    },
         {
             path: 'resetpassword/:id/:token',
             component: ResetPassword,

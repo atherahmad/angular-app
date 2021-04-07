@@ -79,6 +79,7 @@
                     <button class="myRedButton-lg m-2 mt-4 w-100" type='button' (click)="storeRegistrationHandler()" >
                         Register
                     </button>
+                    <mat-progress-bar class="w-75" mode="indeterminate" color="warn" *ngIf="requestInProcess"></mat-progress-bar>
                     </div>
                     <p class="sText" *ngIf="responseError">{{responseErrorText}}</p>
                     <p class="mt-5 myText text-dark">Are you already registered with us? <a  class="badge badge-info active" routerLink='/login' >Login Here!</a></p>

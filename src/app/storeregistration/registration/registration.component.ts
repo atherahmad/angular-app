@@ -20,6 +20,7 @@ export class StoreRegistration{
     responseError: boolean = false;
     responseErrorText: string = "";
     successfullRegistration: boolean = false;
+    requestInProcess: boolean = false;
 
     storeDetails={
         storeName:"",
@@ -80,12 +81,13 @@ export class StoreRegistration{
         else this.formError = false;
         
         const myObserver = {
-            next: x => x,
-            error: err => console.error('Login Failed'+err),
+            next: x =>  this.requestInProcess = false,
+            error: err =>  this.requestInProcess = false,
         }
         let modal = {
             data: this.storeDetails
         }
+        this.requestInProcess = true;
         this.regService.registerStore(modal).subscribe(myObserver);
     }
 

@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
+export class ContactService{
 
 
   private _contactRequestSource = new Subject<string>();

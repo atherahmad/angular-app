@@ -1,6 +1,6 @@
 <div class="container">
     <div class="contact row">
-        <div class="resetModal-form mt-2 col-lg-8 col-md-9 col-sm-12 col-xs-12 ">
+        <div class="resetModal-form mt-2 col-lg-8 col-md-9 col-sm-12 col-xs-12 " *ngIf="!successfullyContacted">
           <div class="heading-box mt-1">
             <h2 class="mb-5 p-2">Contact us</h2>
           </div>
@@ -82,12 +82,15 @@
                 </button>
                 <p class="sText" *ngIf="responseError">{{responseErrorText}}</p>
               </div>
+              <div class="text-center text-md-left mt-3 row justify-content-center" *ngIf="requestInProcess">
+                <app-spinner></app-spinner>
+              </div>
             </form>
           </div>
         </div>
     </div>
 
-      <div class="mb-4 container" >
+      <div class="mb-4 container" *ngIf="successfullyContacted">
           <div class="row justify-content-center">
         <h2 class="h1-responsive font-weight-bold text-center my-4">
             Thanks for contacting us
@@ -103,7 +106,7 @@
           <button
             class="myOrangeButton-xlg btn-block"
             type="button"
-            (click)="contactHandler()"
+            (click)="redirectToHome()"
           >
             Go Back to Home
           </button>

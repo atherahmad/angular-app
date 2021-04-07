@@ -1,6 +1,6 @@
 <div class="container">
   <div class=' row mySignin'>
-    <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+    <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12">
         <div class="mySignin-form">
             <div class="h2-box">
                 <h2 clsassName="mb-5 p-2" >Sign In</h2>
@@ -9,6 +9,7 @@
                   <input class="form-control input-lg mt-3"  type="password" placeholder="Enter your password" [(ngModel)]="password" (change)="changeHandler()">
                   <small class="text-danger" *ngIf="showWarningText">Please fill out both fields.</small>
                   <button class="myBlueButton-lg" type="button" (click)="loginHandler()"> Sign in </button>
+                  <mat-progress-bar class="w-75" mode="indeterminate" *ngIf="requestInProcess"></mat-progress-bar>
                   <p class="mt-1 myText text-dark">Are you not registered with us? <a  class="badge badge-dark active" routerLink='/registeration' >Register!</a></p>
                   <p class="mt-1 myText">Forgot Password?
                   <strong class="L" routerLink='/register' ><a  class="badge badge-warning active" routerLink='/forgetpassword' > Click here</a></strong></p>

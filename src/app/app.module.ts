@@ -28,12 +28,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {TokenInterceptorService} from './token-interceptor.service'
 import { StoreRegistration } from './storeregistration/registration/registration.component';
 import { CreateStoreService } from './services/store/create.service';
-import { ContactService } from './contactus/contactus.service';
-import { ContactComponent } from './contactus/contactus.component';
+import { ContactComponentComponent } from './contact-component/contact-component.component';
+import { ContactService } from './contact-component/contact.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -50,9 +53,9 @@ import { ContactComponent } from './contactus/contactus.component';
     ForgetPassword,
     HomeComponent,
     StoreRegistration,
-    ContactComponent
-  
-  ],
+    ContactComponentComponent,
+    SpinnerComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -65,11 +68,13 @@ import { ContactComponent } from './contactus/contactus.component';
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
     
 
 
   ],
-  providers: [CreateStoreService,ContactService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+  providers: [CreateStoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

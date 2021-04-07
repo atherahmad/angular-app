@@ -15,6 +15,7 @@ export class LoginComponent{
     @Input() authorized: boolean;
     @Output() parentFunction: EventEmitter<any> = new EventEmitter()
     showWarningText: boolean = false;
+    requestInProcess: boolean = false;
     
     constructor(private authService:LoginService, private router:Router) {
         
@@ -30,8 +31,8 @@ export class LoginComponent{
         //this.router.navigate(['/register'])
         //this.parentFunction.emit(true)
         const myObserver = {
-            next: x => this.router.navigateByUrl('/dashboard'),
-            error: err => console.error('Login Failed'+err),
+            next: x => this.requestInProcess=false,
+            error: err => this.requestInProcess=false,
           };
         let modal = {data:{
             email: this.email,
@@ -39,7 +40,10 @@ export class LoginComponent{
           }}
 
         if (this.validInput)
+        {
+            this.requestInProcess = true;
             this.authService.login(modal).subscribe(myObserver)
+        }
 
         else this.showWarningText = true;
         
