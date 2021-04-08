@@ -11,24 +11,34 @@ export class ForgetPassword {
     email: string = "";
     validInput: boolean = false;
     showError: boolean = false;
+    requestInProccess: boolean = false;                                                                                                                                                                                                      
 
     constructor(private authService: LoginService, private router: Router) {
         
     }
     changeHandler = () => this.validInput = true;
+
+    handleClose=()=> this.router.navigateByUrl('/login')
     
     resetHandler = () => {
         if (!this.validInput)  this.showError = true;
         else {
             const myObserver = {
-                next: x => this.router.navigateByUrl('/login'),
-                error: err => console.error('Login Failed' + err),
+                next: (x) => {
+                    this.requestInProccess = false;
+                    this.router.navigateByUrl('/login');
+                },
+                error: err => {
+                    this.requestInProccess = false;
+                    console.log(this.email)
+                }
             };
             let modal = {
                 data: {
                     email: this.email,
                 }
             }
+            this.requestInProccess = true;
             this.authService.forgetPassword(modal).subscribe(myObserver)
         }
     }

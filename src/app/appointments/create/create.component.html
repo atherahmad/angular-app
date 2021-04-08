@@ -10,9 +10,9 @@
   <div class="col-lg-5 col-md-8">
     <mat-form-field appearance="fill" class="select-panel">
       <mat-label>Select Store</mat-label>
-      <mat-select (selectionChange)="log($event.value)">
-        <mat-option *ngFor="let store of stores" [value]="store.id">
-          {{store.name}}
+      <mat-select (selectionChange)="log($event.value)" *ngIf="stores">
+        <mat-option *ngFor="let store of stores.message" [value]="store.id">
+          {{store.storeName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -74,6 +74,7 @@
                         [(ngModel)]="storeDetails.confirmPassword"
                     />
                     <p class="sText" *ngIf="passwordMatchError">Passowrds must match</p>
+                    <p class="sText" *ngIf="formError">All fields are required.</p>
 
                     <div class="row justify-content-center">
                     <button class="myRedButton-lg m-2 mt-4 w-100" type='button' (click)="storeRegistrationHandler()" >

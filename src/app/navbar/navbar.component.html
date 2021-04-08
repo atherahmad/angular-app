@@ -16,7 +16,7 @@
           <a routerLinkActive="active " class="nav-link" routerLink='/registeration' name='registeration'>Register</a>
         </li>
 
-        <li class="nav-item " *ngIf="authorized" >
+        <li class="nav-item " *ngIf="!authorized" >
           <a routerLinkActive="active " class="nav-link" routerLink='/createappointment' name='create' >Create</a>
         </li>
 

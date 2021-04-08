@@ -16,11 +16,29 @@ export class LoginComponent{
     @Output() parentFunction: EventEmitter<any> = new EventEmitter()
     showWarningText: boolean = false;
     requestInProcess: boolean = false;
+    requestError:string=""
     
     constructor(private authService:LoginService, private router:Router) {
         
     }
 
+    ngOnInit(): void {
+        this.authService.loginRequestObserver$
+        .subscribe(
+            (message) => {
+            if (message == "success")
+            {
+              this.router.navigateByUrl('/dashboard')
+            }
+            else {
+                this.requestInProcess = false;
+                this.requestError = message;
+              }
+                }
+            
+        )
+      
+      }
     changeHandler = () => {
     
         if (this.email && this.password) this.validInput = true;
@@ -28,8 +46,7 @@ export class LoginComponent{
     }
 
     loginHandler = () => {
-        //this.router.navigate(['/register'])
-        //this.parentFunction.emit(true)
+
         const myObserver = {
             next: x => this.requestInProcess=false,
             error: err => this.requestInProcess=false,
@@ -47,10 +64,6 @@ export class LoginComponent{
 
         else this.showWarningText = true;
         
-    }
-
-    ngOnInit():void {
-        this.parentFunction.emit(true)
     }
 
 }

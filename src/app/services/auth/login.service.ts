@@ -39,9 +39,9 @@ export class LoginService {
       map((response: any) => {
         const user = response;
         if (user.status == "success") {
-          console.log(user, "success")
+          this.setAuthorization(user.status)
         }
-        else console.log(user.message);
+        this.setAuthorization(user.message);
       })
     )
   }
@@ -51,10 +51,10 @@ export class LoginService {
       map((respone: any) => {
         const result = respone;
         if (result.status == "success"){
-          console.log(result, "changed pass")
+          this.setAuthorization(result.status)
         }
         else 
-          console.log("not changed", result)
+        this.setAuthorization(result.message);
         
       })
     )

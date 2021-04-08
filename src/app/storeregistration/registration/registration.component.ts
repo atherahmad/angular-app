@@ -73,6 +73,7 @@ export class StoreRegistration{
             )
     }
     storeRegistrationHandler = () => {
+        console.log(this.storeDetails)
 
         if (this.storeDetails.password !== this.storeDetails.confirmPassword) return this.passwordMatchError = true;
 
@@ -90,7 +91,7 @@ export class StoreRegistration{
         this.requestInProcess = true;
         this.regService.registerStore(modal).subscribe(myObserver);
     }
-
+    
     optionSelectHandler = (event: Event) => {
         switch ((<HTMLInputElement>event.target).name) {
             case "personsPerSlot": {

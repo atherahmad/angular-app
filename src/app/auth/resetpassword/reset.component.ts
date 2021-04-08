@@ -17,6 +17,8 @@ export class ResetPassword implements OnInit{
     id: string;
     token: string;
     resetTokenVerified: boolean = false;
+    requestInProccess: boolean = false;
+    requestError: string = "";
 
     constructor(private authService: LoginService, private router: Router,private route: ActivatedRoute) {
       
@@ -36,6 +38,21 @@ export class ResetPassword implements OnInit{
             error: err => this.router.navigateByUrl('login'),
         };
         this.authService.tokenCheck(modal).subscribe(myObserver);
+
+        this.authService.loginRequestObserver$
+        .subscribe(
+            (message) => {
+            if (message == "success")
+            {
+              this.router.navigateByUrl('/dashboard')
+            }
+            else {
+                this.requestInProccess = false;
+                this.requestError = message;
+              }
+                }
+            
+        )
   
       }
 
@@ -64,6 +81,7 @@ export class ResetPassword implements OnInit{
             },
             id:this.id
         }
+        this.requestInProccess = true;
         this.authService.resetPassword(modal).subscribe(myObserver)
    
     }

@@ -7,7 +7,7 @@ import { StoreService } from "../../services/store/store.service";
     styleUrls:['./create.component.css']
 })
 export class CreateAppointment{
-    public stores = [];
+    public stores: object = {}
     leapYearCheck: boolean = false;
     selectedMonth: number;
     daysOfMonth: Array<string> = [];
@@ -25,6 +25,19 @@ export class CreateAppointment{
         { name: "Nov", id: 11 },
         { name: "Dec", id: 12 }
     ];
+    constructor(private _storeService: StoreService) {
+        for (let i = 1; i < 31; i++){
+            this.years.push(2020 + i);
+        }
+
+        this.timeSloter('0845', '1730', '30', 20)
+        const myObserver= {
+            next: x => console.log("got stores"),
+            error: err=> console.log("cant get stores",err)
+        }
+        this._storeService.getStores().subscribe(myObserver)
+    }
+    log=(eventValue)=>console.log(eventValue, "in log function")
 
     timeSlots: object = [
         {
@@ -60,22 +73,19 @@ export class CreateAppointment{
     
     years: Array<number> =[]
 
-    constructor(private _storeService: StoreService) {
-        for (let i = 1; i < 31; i++){
-            this.years.push(2020 + i);
-        }
-
-        this.timeSloter('0845','1730','30',20)
-     }
+    
     
     ngOnInit() {
-        this._storeService.getStores()
-            .subscribe((data) => this.stores = data);
+        console.log(this.stores, "before geting from backend")
+        this._storeService.storeListObserver$
+            .subscribe(data => {
+                console.log(data, "this is data variable")  
+                this.stores = data
+            });
+        console.log(this.stores, "after geting from backend")
     }
 
-    log = (event: Text) => {
-        console.log()
-    }
+
     yearSelector = (year:string) => {
         if (+year % 4 == 1) this.leapYearCheck = true;
         else this.leapYearCheck = false;
