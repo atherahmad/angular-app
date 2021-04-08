@@ -22,7 +22,6 @@ export class AccountconfirmationComponent implements OnInit {
     
   }
   ngOnInit() {
-
     this.id = this.route.snapshot.paramMap.get('id');
     this.token = this.route.snapshot.paramMap.get('token');
     let modal = {
@@ -31,16 +30,16 @@ export class AccountconfirmationComponent implements OnInit {
         token: this.token
       }
     }
+    console.log(this.token,this.id)
     const myObserver = {
       next: x => this.resetTokenVerified = true,
       error: err => console.log(err),
     };
-    //this.authService.tokenCheck(modal).subscribe(myObserver);
+    this.authService.tokenCheck(modal).subscribe(myObserver);
     
 
   }
   goToHome = () => {
-    console.log("i am called")
     this.router.navigateByUrl('/login')
   }
 

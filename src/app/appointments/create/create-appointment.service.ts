@@ -26,7 +26,7 @@ constructor(private http:HttpClient) { }
         if (result.status === "success") {
           this.sendAppoinmentStatus(result.status)
         }
-        else this.sendAppoinmentStatus(result.message)
+        else {this.sendAppoinmentStatus(result.message)}
         
       }))
     )
