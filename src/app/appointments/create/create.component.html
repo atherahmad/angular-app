@@ -44,7 +44,7 @@
   <div class="col-4">
     <mat-form-field appearance="fill" class="select-panel-date m-2">
       <mat-label>Day</mat-label>
-      <mat-select >
+      <mat-select (selectionChange)="daySelector($event.value)">
           <mat-option *ngFor="let date of daysOfMonth" [value]="date">
             {{date}}
           </mat-option>
@@ -58,8 +58,8 @@
   <div class="col-lg-5 col-md-8">
     <mat-form-field appearance="fill" class="select-panel">
       <mat-label>Available Time Slots</mat-label>
-      <mat-select  *ngIf="arrayOfSlots">
-        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" >
+      <mat-select  *ngIf="arrayOfSlots" (selectionChange)="slotSelector($event.value)">
+        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber">
           Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}}-{{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
         </mat-option>
       </mat-select>
@@ -68,7 +68,14 @@
 </div>
 <div class="row mt-4">
   <div class="col-lg-5 col-md-8">
-    <button class="myOrangeButton-xlg w-100">Book</button>
+    <p class="sText" *ngIf="formError">Please fill all fields.</p>
+    <p class="sText" *ngIf="responseError">{{responseErrorText}}</p>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-lg-5 col-md-8">
+    <button class="myOrangeButton-xlg w-100" type="button" (click)="submitHandler()">Book</button>
+    <mat-progress-bar mode="indeterminate" class="m-2" color="warn" *ngIf="requestInProcess"></mat-progress-bar>
   </div>
 </div>
 </div>

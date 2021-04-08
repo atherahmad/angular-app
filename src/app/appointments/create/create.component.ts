@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { StoreslotsService } from "src/app/services/store/storeslots.service";
 import { StoreService } from "../../services/store/store.service";
+import { CreateAppointmentService } from "./create-appointment.service";
 
 @Component({
     selector: 'app-appointment-create',
@@ -15,14 +17,16 @@ export class CreateAppointment{
     years: Array<number> = [];
     selectedStoreId: string = "";
     arrayOfSlots: Array<any> = [];
+    slotNumber: string = "";
+    selectedSlotYear: string = "";
+    selectedSlotMonth: number;
+    selectedSlotDay: string;
+    appointmentCreated:boolean=true
 
-    test: object = {
-        store: "",
-        year: "",
-        month: "",
-        day: "",
-        soltNumber:"",
-    }
+    formError: boolean = false;
+    responseError: boolean = false;
+    requestInProcess: boolean = false;
+    responseErrorText: string = "";
     
     monthsOfYear = [
         { name: "Jan", id: 1 },
@@ -39,7 +43,7 @@ export class CreateAppointment{
         { name: "Dec", id: 12 }
     ];
 
-    constructor(private _storeService: StoreService, private _storeSlotsService: StoreslotsService) {
+    constructor(private _storeService: StoreService, private _storeSlotsService: StoreslotsService, private _createAppointmentService: CreateAppointmentService, private router:Router) {
         for (let i = 1; i < 31; i++){
             this.years.push(2020 + i);
         }
@@ -60,17 +64,30 @@ export class CreateAppointment{
             .subscribe(data => { 
                 this.arrayOfSlots=data
             })
-
+        this._createAppointmentService.appointmentObserver$
+            .subscribe(data => {
+                if (data == "success") {
+                    this.requestInProcess = false
+                    this.router.navigateByUrl('/dashboard')
+                }
+                else {
+                    this.responseError = true;
+                    this.responseErrorText = data;
+                }
+            })
         
     }
-    
+
     yearSelector = (year:string) => {
         if (+year % 4 == 1) this.leapYearCheck = true;
         else this.leapYearCheck = false;
+        this.selectedSlotYear = year;
         this.monthSelector(this.selectedMonth);
     }
+
     monthSelector = (month: number) => {
         this.daysOfMonth = [];
+        this.selectedSlotMonth = month;
         this.selectedMonth = month;
         let daysLimit: Number;
 
@@ -90,6 +107,11 @@ export class CreateAppointment{
             this.daysOfMonth.push(('0' + i).slice(-2))
         }
     }
+    
+    daySelector = (day:string) => {
+        this.selectedSlotDay = day;
+    }
+
     getStoreSlots = (storeId: string) => {
         this.selectedStoreId = storeId;
         const model: string = storeId;
@@ -99,5 +121,31 @@ export class CreateAppointment{
         }
         this._storeSlotsService.getSlots(model).subscribe(myObserver);
     }
+
+    slotSelector = (slotNumber: string) => this.slotNumber = slotNumber
+
+
+    submitHandler = () => {
+        const modal=
+        {
+            slotNumber: this.slotNumber,
+            selectedYear:this.selectedSlotYear,
+            selectedMonth:this.selectedSlotMonth,
+            selectedDay:this.selectedSlotDay,
+            selectedStore: this.selectedStoreId
+        }
+        const myObserver = {
+            next: x => x,
+            error: err=> err
+        }
+        if (!Object.keys(modal).every((key) => modal[key]))
+        return this.formError=true;
+        else this.formError = false;
+
+        this.requestInProcess = true;
+        
+        this._createAppointmentService.bookAppointment(modal).subscribe(myObserver)
+    }
+    
 
 }
