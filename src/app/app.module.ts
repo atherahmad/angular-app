@@ -54,7 +54,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HomeComponent,
     StoreRegistration,
     ContactComponentComponent,
-    SpinnerComponent
+    SpinnerComponent,
    ],
   imports: [
     BrowserModule,

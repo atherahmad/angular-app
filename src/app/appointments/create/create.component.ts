@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { StoreslotsService } from "src/app/services/store/storeslots.service";
 import { StoreService } from "../../services/store/store.service";
 
 @Component({
@@ -7,10 +8,22 @@ import { StoreService } from "../../services/store/store.service";
     styleUrls:['./create.component.css']
 })
 export class CreateAppointment{
-    public stores: object = {}
+    public stores: Array<any> = [];
     leapYearCheck: boolean = false;
     selectedMonth: number;
     daysOfMonth: Array<string> = [];
+    years: Array<number> = [];
+    selectedStoreId: string = "";
+    arrayOfSlots: Array<any> = [];
+
+    test: object = {
+        store: "",
+        year: "",
+        month: "",
+        day: "",
+        soltNumber:"",
+    }
+    
     monthsOfYear = [
         { name: "Jan", id: 1 },
         { name: "Feb", id: 2 },
@@ -25,67 +38,32 @@ export class CreateAppointment{
         { name: "Nov", id: 11 },
         { name: "Dec", id: 12 }
     ];
-    constructor(private _storeService: StoreService) {
+
+    constructor(private _storeService: StoreService, private _storeSlotsService: StoreslotsService) {
         for (let i = 1; i < 31; i++){
             this.years.push(2020 + i);
         }
 
-        this.timeSloter('0845', '1730', '30', 20)
         const myObserver= {
-            next: x => console.log("got stores"),
-            error: err=> console.log("cant get stores",err)
+            next: x => x,
+            error: err=> err
         }
-        this._storeService.getStores().subscribe(myObserver)
+        this._storeService.getStores().subscribe(myObserver);
+
     }
-    log=(eventValue)=>console.log(eventValue, "in log function")
-
-    timeSlots: object = [
-        {
-            id: 1,
-            slot: "test"
-        }
-    ];
-    arrayOfSlots: Array<any> = [];
-
-    timeSloter(startingTime: string, closingTime: string, slotLimit: string, capacity:number) {
-
-        let startTime = +startingTime;
-        let closeTime = +closingTime;
-        let slotDuration = +slotLimit;
-
-        let numberOfSlots = (((closeTime % 100) + Math.floor(((closeTime - (closeTime % 100)) / 100) * 60)) - ((startTime % 100) + Math.floor(((startTime - (startTime % 100)) / 100) * 60))) / slotDuration;
-
-        let tempTime = startTime;
-        let endTime:number;
-        
-        for (let i = 1; i <= numberOfSlots; i++) {
-
-            if (((tempTime + slotDuration) % 100) >= 60) {
-                endTime = (((tempTime + slotDuration) % 100) - 60) + (100 - ((tempTime + slotDuration) % 100)) + (tempTime + slotDuration)
-            }
-            else
-                endTime = tempTime + slotDuration;
-            this.arrayOfSlots.push({ slotNumber:i,appointmentStartTime: ('0'+tempTime).slice(-4), appointmentEndTime: ('0'+endTime).slice(-4), availableBookings:capacity });
-            tempTime = endTime;
-        }
-    }
-
-    
-    years: Array<number> =[]
-
-    
-    
     ngOnInit() {
-        console.log(this.stores, "before geting from backend")
         this._storeService.storeListObserver$
             .subscribe(data => {
-                console.log(data, "this is data variable")  
                 this.stores = data
             });
-        console.log(this.stores, "after geting from backend")
+            this._storeSlotsService.storeSlotsObserver$
+            .subscribe(data => { 
+                this.arrayOfSlots=data
+            })
+
+        
     }
-
-
+    
     yearSelector = (year:string) => {
         if (+year % 4 == 1) this.leapYearCheck = true;
         else this.leapYearCheck = false;
@@ -112,4 +90,14 @@ export class CreateAppointment{
             this.daysOfMonth.push(('0' + i).slice(-2))
         }
     }
+    getStoreSlots = (storeId: string) => {
+        this.selectedStoreId = storeId;
+        const model: string = storeId;
+        const myObserver = {
+            next: x => x,
+            error: err=> err
+        }
+        this._storeSlotsService.getSlots(model).subscribe(myObserver);
+    }
+
 }
