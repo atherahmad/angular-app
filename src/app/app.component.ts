@@ -10,20 +10,27 @@ import { LoginService } from './services/auth/login.service';
 export class AppComponent {
   title:string;
   authorized: boolean = false;
+  firstName: string = "";
+  lastName: string = "";
 
   constructor(private loginService: LoginService, private router: Router) { }
 
 ngOnInit(): void {
-  this.loginService.loginRequestObserver$
+  this.loginService.userData$
   .subscribe(
-      (message) => {
-      if (message == "success")
+      (data) => {
+      if (data.status="success")
       {
+        console.log("data in app", data)
         this.authorized = true;
-        this.router.navigateByUrl('/dashboard')
+        this.firstName = data.data.firstName;
+        this.lastName = data.data.lastName;
+        this.router.navigateByUrl('/dashboard') 
       }
       else {
         this.authorized = false;
+        this.firstName = "";
+        this.lastName = "";
 
         }
           }

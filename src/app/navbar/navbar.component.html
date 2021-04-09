@@ -16,7 +16,7 @@
           <a routerLinkActive="active " class="nav-link" routerLink='/registeration' name='registeration'>Register</a>
         </li>
 
-        <li class="nav-item " *ngIf="!authorized" >
+        <li class="nav-item " *ngIf="authorized" >
           <a routerLinkActive="active " class="nav-link" routerLink='/createappointment' name='create' >Create</a>
         </li>
 
@@ -28,11 +28,12 @@
           <a  routerLinkActive="active " class="nav-link" routerLink='/deleted' name='deleted'>Deleted</a>
         </li>
 
-        <li class="nav-item">
-          <a  routerLinkActive="active " class="nav-link" routerLink='/contact' name='contact'>Contact</a>
-        </li>
+        
         <li class="nav-item" *ngIf="!authorized">
           <a  routerLinkActive="active " class="nav-link" routerLink='/store/registration' name='storeregistration'>Store Registration</a>
+        </li>
+        <li class="nav-item">
+          <a  routerLinkActive="active " class="nav-link" routerLink='/contact' name='contact'>Contact</a>
         </li>
         <li class="nav-item">
           <a  *ngIf="authorized" routerLinkActive="active " class="nav-link" routerLink ='/logout'  name='logout' (click)="logoutHandler()">Logout</a>
@@ -43,4 +44,7 @@
       </ul>
     </div>
   </nav>
+  <div class=" justify-content-left">
+  <h2 class="navbar-brand" *ngIf="authorized">Welcome! {{firstName}} {{lastName}}</h2>
+</div>
 </div>

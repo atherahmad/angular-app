@@ -14,6 +14,8 @@ export class DashboardComponent{
     showHiddenText: boolean = false;
     timeStamps = [];
 
+    constructor() { }
+    
     createServer = () => this.servers.push(this.serverName);
     toggleText = () => {
         this.showHiddenText = !this.showHiddenText;

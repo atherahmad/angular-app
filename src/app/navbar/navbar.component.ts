@@ -13,6 +13,8 @@ export class NavbarComponent{
   @Input() authorized: boolean;
   @Input() setAuthorized: () => void;
   @Input() setUnAuthorized: () => void;
+  @Input() firstName = "";
+  @Input() lastName = "";
 
 
 

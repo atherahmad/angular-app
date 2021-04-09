@@ -14,10 +14,16 @@ export class LoginService {
   private _loginRequestSource = new Subject<string>();
   loginRequestObserver$ = this._loginRequestSource.asObservable();
 
+  private _userData = new Subject<any>();
+  userData$ = this._userData.asObservable();
+
   constructor(private http: HttpClient, private route: Router) { }
   
   setAuthorization = (status: string) => {
     this._loginRequestSource.next(status)
+  }
+  setUserData = (data: any) => {
+    this._userData.next(data)
   }
   login = (modal: any) => {
 
@@ -27,6 +33,7 @@ export class LoginService {
           if (user.status == "success") {
             localStorage.setItem("c2c-token", user.token)
             this.setAuthorization(user.status)
+            this.setUserData(user)
         }
           else this.setAuthorization(user.message)
       })
@@ -39,7 +46,7 @@ export class LoginService {
       map((response: any) => {
         const user = response;
         if (user.status == "success") {
-          this.setAuthorization(user.status)
+          this.setAuthorization(user.data)
         }
         this.setAuthorization(user.message);
       })
