@@ -56,15 +56,11 @@ export class ResetPassword implements OnInit{
   
       }
 
-    
     changeHandler = () => {
         if (this.password && this.confirmPassword) this.allInputsEntered = true;
         this.passwordMatchError = false;
 
     }
-    
-
-        
     
     changePassword = () => {
 

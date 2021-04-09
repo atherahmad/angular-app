@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
 
@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
   templateUrl: './accountconfirmation.component.html',
   styleUrls: ['../forgetpassword/forget.component.css']
 })
-export class AccountconfirmationComponent implements OnInit {
+export class AccountconfirmationComponent{
   password: string = "";
   confirmPassword: string = "";
   showInputError: boolean = false;
@@ -17,13 +17,15 @@ export class AccountconfirmationComponent implements OnInit {
   token: string;
   resetTokenVerified: boolean = true;
   email: string = "";
+  confirmed: boolean = false;
 
   constructor(private authService: LoginService, private router: Router, private route: ActivatedRoute) {
     
   }
-  ngOnInit() {
+   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.token = this.route.snapshot.paramMap.get('token');
+    if(!this.id || !this.token) this.router.navigateByUrl('/login')
     let modal = {
       data: {
         id: this.id,
@@ -32,21 +34,15 @@ export class AccountconfirmationComponent implements OnInit {
     }
     console.log(this.token,this.id)
     const myObserver = {
-      next: x => this.resetTokenVerified = true,
+      next: x => this.confirmed = true,
       error: err => console.log(err),
     };
-    this.authService.tokenCheck(modal).subscribe(myObserver);
+    this.authService.accountConfirmation(modal).subscribe(myObserver);
+    
     
 
-  }
+  } 
   goToHome = () => {
     this.router.navigateByUrl('/login')
-  }
-
-  
-  changeHandler = () => {
-    if (this.password && this.confirmPassword) this.allInputsEntered = true;
-    this.passwordMatchError = false;
-
   }
 }

@@ -20,6 +20,7 @@ export class RegisterComponent{
     passwordError: boolean = false;
     requestInProcess: boolean = false;
     responseErrorText: string = "";
+    successfullRegistration: boolean = false;
 
     constructor(private registrationService: RegisterService, private router:Router) { }
     
@@ -28,7 +29,7 @@ export class RegisterComponent{
             .subscribe(status => {
                 if (status == "success") {
                     this.requestInProcess = false;
-                    this.router.navigateByUrl('/login');
+                    this.successfullRegistration = true;
                 }
                 else {
                     this.requestInProcess = false;

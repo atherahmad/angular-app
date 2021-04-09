@@ -9,7 +9,6 @@ import { ResetPassword } from './auth/resetpassword/reset.component';
 import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { StoreRegistrationConirmation } from './storeregistration/confirmation/confirmation.comoponent';
 import { StoreRegistration } from './storeregistration/registration/registration.component';
 import { WarningComponent } from './warning/warning.component';
 
@@ -19,7 +18,7 @@ const routes: Routes = [
             component: DashboardComponent,
         },
         {
-            path: 'registration/confirmation/:id/:token',
+            path: 'account/confirmation/:id/:token',
             component: AccountconfirmationComponent
         },
         {
@@ -50,10 +49,6 @@ const routes: Routes = [
         {
             path: 'createappointment',
             component: CreateAppointment
-        },
-        {
-            path: 'store/registration/confirmation/:id/:token',
-            component: StoreRegistrationConirmation
         },
         {
             path: 'store/registration',

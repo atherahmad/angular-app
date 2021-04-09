@@ -33,6 +33,7 @@ import { ContactService } from './contact-component/contact.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AccountconfirmationComponent } from './auth/accountconfirmation/accountconfirmation.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     StoreRegistration,
     ContactComponentComponent,
     SpinnerComponent,
+    AccountconfirmationComponent,
    ],
   imports: [
     BrowserModule,

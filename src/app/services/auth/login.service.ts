@@ -73,4 +73,14 @@ export class LoginService {
       })
     )
   }
+
+  accountConfirmation = (modal: any) => {
+    return this.http.post(this.authUrl + 'auth/confirm', modal).pipe(
+      map((response: any) => {
+        const result = response;
+        if (result.status == "success") console.log("you have succesfully confirmed your account")
+        else console.log("confirmation failed")
+      })
+    )
+  }
 }

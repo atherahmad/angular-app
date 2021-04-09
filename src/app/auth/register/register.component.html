@@ -6,7 +6,7 @@
                         <h2 class="mb-5" >Register</h2>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container" *ngIf="!successfullRegistration">
 
                     <input
                         label="First Name"
@@ -72,6 +72,12 @@
         
                     <p class="mt-5 myText text-dark">Are you already registered with us? <a  class="badge badge-info active" routerLink='/login' >Login Here!</a></p>
                    </div>
+                   <div class="container mt-5 mb-5" *ngIf="successfullRegistration">
+                    <h4>You have successfully Registered with us. We have sent you confirmation email, please confirm that.</h4>
+                    <button class="myRedButton-lg m-2 mb-5 mt-5 w-100" routerLink='/login' >
+                        Go To Login
+                    </button>
+                </div>
         </form>
     </div>
 </div>
