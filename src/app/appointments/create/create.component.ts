@@ -20,8 +20,10 @@ export class CreateAppointment{
     slotNumber: string = "";
     selectedSlotYear: string = "";
     selectedSlotMonth: number;
-    selectedSlotDay: string;
-    appointmentCreated:boolean=true
+    selectedDay: number;
+    appointmentCreated: boolean = true
+    storeName: string = "";
+    slotName: string = "";
 
     formError: boolean = false;
     responseError: boolean = false;
@@ -109,11 +111,17 @@ export class CreateAppointment{
     }
     
     daySelector = (day:string) => {
-        this.selectedSlotDay = day;
+        this.selectedDay = +day;
     }
 
-    getStoreSlots = (storeId: string) => {
-        this.selectedStoreId = storeId;
+    getStoreName = (storeName:string) => this.storeName=storeName;
+    getSlotName = (startTime: number, endTime: number) => {
+        this.slotName = `${startTime} - ${endTime}`
+        console.log(this.slotName)
+    };
+
+    getStoreSlots = (storeId:string) => {
+       this.selectedStoreId = storeId;
         const model: string = storeId;
         const myObserver = {
             next: x => x,
@@ -131,8 +139,10 @@ export class CreateAppointment{
             slotNumber: this.slotNumber,
             selectedYear:this.selectedSlotYear,
             selectedMonth:this.selectedSlotMonth,
-            selectedDay:this.selectedSlotDay,
-            selectedStore: this.selectedStoreId
+            selectedDay:this.selectedDay,
+            selectedStore: this.selectedStoreId,
+            storeName: this.storeName,
+            slotName:this.slotName
         }
         const myObserver = {
             next: x => x,

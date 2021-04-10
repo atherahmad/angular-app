@@ -18,38 +18,18 @@
                 <th scope="col">Edit</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+            <tbody >
+              <tr *ngFor="let appointment of appointmentsList; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{appointment.storeName}}</td>
+                <td>{{appointment.appointmentDate}}</td>
+                <td>{{appointment.slotName}}</td>
                 <td>
-                  <button mat-mini-fab color = "basic">
+                  <button mat-mini-fab color = "basic" (click)="editAppointment(appointment._id)">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>
-                  <button mat-mini-fab color = "basic" >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>
-                  <button mat-mini-fab color = "basic">
-                    <mat-icon>edit</mat-icon>
-                  </button>
             </tbody>
           </table>
     </div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateAppointment } from './appointments/create/create.component';
+import { EditAppointmentComponent } from './appointments/edit-appointment/edit-appointment.component';
 import { AccountconfirmationComponent } from './auth/accountconfirmation/accountconfirmation.component';
 import { ForgetPassword } from './auth/forgetpassword/forget.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -9,6 +10,7 @@ import { ResetPassword } from './auth/resetpassword/reset.component';
 import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { HeadingComponent } from './shared/heading/heading.component';
 import { StoreRegistration } from './storeregistration/registration/registration.component';
 import { WarningComponent } from './warning/warning.component';
 
@@ -47,13 +49,22 @@ const routes: Routes = [
             component: ForgetPassword
         },
         {
-            path: 'createappointment',
+            path: 'appointment/create',
             component: CreateAppointment
+        },
+        {
+            path: 'appointment/edit/:id',
+            component: EditAppointmentComponent
         },
         {
             path: 'store/registration',
             component: StoreRegistration
-        },
+    },
+    {
+        path: 'heading',
+        component: HeadingComponent
+    },
+    
         {
             path: '',
             component: HomeComponent,

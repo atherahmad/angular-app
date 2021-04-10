@@ -18,7 +18,7 @@
 }
 
 .heading-box {
-  background: rgb(255, 139, 13);
+  background:  #11213b;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.363);
   height: 100px;
 }
@@ -37,6 +37,8 @@ h2 {
   margin-top: -45px;
   margin-bottom: 60px;
   padding: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   height: 80px;
 }
 .materialinput {

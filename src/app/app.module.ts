@@ -34,6 +34,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AccountconfirmationComponent } from './auth/accountconfirmation/accountconfirmation.component';
+import { HeadingComponent } from './shared/heading/heading.component';
+import { EditAppointmentComponent } from './appointments/edit-appointment/edit-appointment.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { AccountconfirmationComponent } from './auth/accountconfirmation/account
     ContactComponentComponent,
     SpinnerComponent,
     AccountconfirmationComponent,
+    HeadingComponent,
+    EditAppointmentComponent
    ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 <div class="container mt-5">
   <div class="contact row">
-    <div class="resetModal-form mt-4 col-lg-8 col-md-9 col-sm-12 col-xs-12 ">
+    <div class="resetModal-form mt-4 col-lg-6 col-md-10 col-sm-12 col-xs-12 ">
       <div class="heading-box">
-        <h2 class="mb-5 p-2">Create Appointment</h2>
+        <h2 class="mb-5">Create Appointment</h2>
       </div>
     </div>
 </div>
@@ -10,8 +10,8 @@
   <div class="col-lg-5 col-md-8">
     <mat-form-field appearance="fill" class="select-panel">
       <mat-label>Select Store</mat-label>
-      <mat-select (selectionChange)="getStoreSlots($event.value)" *ngIf="stores">
-        <mat-option *ngFor="let store of stores"   [value]="store._id">
+      <mat-select (selectionChange)="getStoreSlots( $event.value)" *ngIf="stores">
+        <mat-option *ngFor="let store of stores"   [value]="store._id"  (click)="getStoreName(store.storeName)">
           {{store.storeName}}
         </mat-option>
       </mat-select>
@@ -59,8 +59,8 @@
     <mat-form-field appearance="fill" class="select-panel">
       <mat-label>Available Time Slots</mat-label>
       <mat-select  *ngIf="arrayOfSlots" (selectionChange)="slotSelector($event.value)">
-        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber">
-          Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}}-{{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
+        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" (click)="getSlotName(slot.appointmentStartTime,slot.appointmentEndTime)">
+          Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}} - {{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -74,7 +74,7 @@
 </div>
 <div class="row mt-4">
   <div class="col-lg-5 col-md-8">
-    <button class="myOrangeButton-xlg w-100" type="button" (click)="submitHandler()">Book</button>
+    <button class="myBlueButton-xlg w-100" type="button" (click)="submitHandler()">Book</button>
     <mat-progress-bar mode="indeterminate" class="m-2" color="warn" *ngIf="requestInProcess"></mat-progress-bar>
   </div>
 </div>
