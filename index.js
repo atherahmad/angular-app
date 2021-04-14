@@ -25,6 +25,6 @@ app.use("/api/admin", require("./backend/router/admin"));
 app.use("/api/store", require("./backend/router/store"));
 app.use("/api/appointment", require("./backend/router/appointment"));
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT ||8080, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
