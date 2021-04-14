@@ -12,7 +12,7 @@ export class HomeComponent{
     constructor(private router:Router){}
 
     redirectHandler = () => {
-        this.router.navigateByUrl('/login')
+        this.router.navigateByUrl('/registeration')
     }
 
     storeCustomerHandler = () => {
