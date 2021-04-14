@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class DashboardService {
 
-  private authUrl: string = "http://localhost:5000/api/dashboard/"
+  private authUrl: string = "https://appointment-app-backend.herokuapp.com/api/dashboard/"
 
 
   private _userAppointments = new Subject<any>();

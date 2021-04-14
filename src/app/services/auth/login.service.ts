@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators'
 })
 export class LoginService {
 
-  private authUrl: string = "http://localhost:5000/api/"
+  private authUrl: string = "https://appointment-app-backend.herokuapp.com/api/"
 
   private _loginRequestSource = new Subject<string>();
   loginRequestObserver$ = this._loginRequestSource.asObservable();

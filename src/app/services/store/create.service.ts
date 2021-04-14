@@ -12,7 +12,7 @@ export class CreateStoreService {
   private _storeRegistrationSource = new Subject<string>();
   storeRegistration$ = this._storeRegistrationSource.asObservable();
 
-  private storeUrl:string="http://localhost:5000/api/store/"
+  private storeUrl:string="https://appointment-app-backend.herokuapp.com/api/store/"
 
   constructor(private http: HttpClient, private route: Router) { }
   

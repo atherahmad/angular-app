@@ -11,7 +11,7 @@ export class RegisterService {
   private _userRegistration = new Subject<string>();
   registrationObserver$ = this._userRegistration.asObservable();
   
-  private registrationUrl = 'http://localhost:5000/api/';
+  private registrationUrl = 'https://appointment-app-backend.herokuapp.com/api/';
 
   constructor(private http: HttpClient) { }
 

@@ -14,7 +14,7 @@ export class ContactService{
   contactRequestObserver$ = this._contactRequestSource.asObservable();
 
  
-  private contactUrl: string = "http://localhost:5000/api/";
+  private contactUrl: string = "https://appointment-app-backend.herokuapp.com/api/";
 
   constructor(private http: HttpClient, private router: Router) { }
 

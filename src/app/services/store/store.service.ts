@@ -12,7 +12,7 @@ export class StoreService {
   storeListObserver$ = this._storeListSource.asObservable();
   storeSlotsObserver$ = this._storeListSource.asObservable();
 
-  private storeListUrl:string = `http://localhost:5000/api/`
+  private storeListUrl:string = `https://appointment-app-backend.herokuapp.com/api/`
 
   constructor(private http: HttpClient) { }
   

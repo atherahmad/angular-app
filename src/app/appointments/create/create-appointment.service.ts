@@ -11,7 +11,7 @@ export class CreateAppointmentService {
   private _appointmentCreator = new Subject<any>();
   appointmentObserver$ = this._appointmentCreator.asObservable();
 
-  private appointmentUrl = 'http://localhost:5000/api/'
+  private appointmentUrl = 'https://appointment-app-backend.herokuapp.com/api/'
   
 constructor(private http:HttpClient) { }
 
