@@ -52,7 +52,7 @@
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
   },
-  "engines": {
+  "engines": { 
     "node": "12.18.3",
     "npm": "6.14.6"
   }
