@@ -15,7 +15,7 @@ res.sendFile(path.join(__dirname+'/src/index.html'));
 
 app.get('/login', function(req,res) {
     
-    res.sendFile(path.join(__dirname+'/src/index.html'));
+    res.sendFile(path.join(__dirname+'/src/app/auth/login.component.html'));
 });
 app.get('/contact', function(req,res) {
     
