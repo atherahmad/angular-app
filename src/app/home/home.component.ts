@@ -1,6 +1,7 @@
 import { templateJitUrl } from "@angular/compiler";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthenticationService } from "../services/auth/authentication.service";
 
 @Component({
     selector: 'app-home',
@@ -9,7 +10,18 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent{
 
-    constructor(private router:Router){}
+    constructor(private router:Router, private authService:AuthenticationService){}
+
+    ngOnInit(): void{
+        if (localStorage.getItem("c2c-token")) {
+            alert("we have token")
+            const myObserver = {
+                next: x => x,
+                error: err => err,
+              };
+            this.authService.tokenCheck().subscribe(myObserver)
+        }
+    }
 
     redirectHandler = () => {
         this.router.navigateByUrl('/registeration')

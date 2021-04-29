@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './services/auth/authentication.service';
 import { LoginService } from './services/auth/login.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AppComponent {
   firstName: string = "";
   lastName: string = "";
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private authService: AuthenticationService) { }
 
 ngOnInit(): void {
   this.loginService.userData$
@@ -21,7 +22,6 @@ ngOnInit(): void {
       (data) => {
       if (data.status="success")
       {
-        console.log("data in app", data)
         this.authorized = true;
         this.firstName = data.data.firstName;
         this.lastName = data.data.lastName;
@@ -36,6 +36,18 @@ ngOnInit(): void {
           }
       
   )
+
+  this.authService.userData$
+    .subscribe(
+      (data) => {
+        if (data.status == "success") {
+          this.authorized = true;
+          this.firstName = data.data.firstName;
+          this.lastName = data.data.lastName;
+          this.router.navigateByUrl('/dashboard') 
+        }
+            }
+          )
 
 }
   setAuthorized = () => this.authorized = true;
