@@ -1,0 +1,12 @@
+<div class="row mt-4">
+  <div class="col-lg-5 col-md-8">
+    <mat-form-field appearance="fill" class="select-panel">
+      <mat-label>Available Time Slots</mat-label>
+      <mat-select  *ngIf="arrayOfSlots" (selectionChange)="slotSelector($event.value)">
+        <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" (click)="getSlotName(slot.appointmentStartTime,slot.appointmentEndTime)">
+          Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}} - {{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>  
+</div>

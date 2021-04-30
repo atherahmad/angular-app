@@ -37,6 +37,9 @@ import { AccountconfirmationComponent } from './auth/accountconfirmation/account
 import { HeadingComponent } from './shared/heading/heading.component';
 import { EditAppointmentComponent } from './appointments/edit-appointment/edit-appointment.component';
 import { TimeslotPipe } from './timeslot.pipe';
+import { SlotSelectComponent } from './appointments/inputComponents/slot-select/slot-select.component';
+import { StoreSelectComponent } from './appointments/inputComponents/store-select/store-select.component';
+import { DateSelectComponent } from './appointments/inputComponents/date-select/date-select.component';
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { TimeslotPipe } from './timeslot.pipe';
     AccountconfirmationComponent,
     HeadingComponent,
     EditAppointmentComponent,
-      TimeslotPipe
+    TimeslotPipe,
+    SlotSelectComponent,
+    StoreSelectComponent,
+    DateSelectComponent
    ],
   imports: [
     BrowserModule,
