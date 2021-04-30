@@ -36,10 +36,11 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AccountconfirmationComponent } from './auth/accountconfirmation/accountconfirmation.component';
 import { HeadingComponent } from './shared/heading/heading.component';
 import { EditAppointmentComponent } from './appointments/edit-appointment/edit-appointment.component';
+import { TimeslotPipe } from './timeslot.pipe';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -60,7 +61,8 @@ import { EditAppointmentComponent } from './appointments/edit-appointment/edit-a
     SpinnerComponent,
     AccountconfirmationComponent,
     HeadingComponent,
-    EditAppointmentComponent
+    EditAppointmentComponent,
+      TimeslotPipe
    ],
   imports: [
     BrowserModule,

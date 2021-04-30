@@ -14,7 +14,6 @@ export class HomeComponent{
 
     ngOnInit(): void{
         if (localStorage.getItem("c2c-token")) {
-            alert("we have token")
             const myObserver = {
                 next: x => x,
                 error: err => err,

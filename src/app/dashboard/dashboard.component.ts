@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { HeadingService } from "../shared/heading/heading.service";
 import { DashboardService } from "./dashboard.service";
+import { TimeslotPipe } from "../timeslot.pipe";
 
 @Component({
     selector: 'app-dashboard',
@@ -26,6 +28,7 @@ export class DashboardComponent{
             if (appointments.status == "success")
             {
                 this.appointmentsList = appointments.message
+                console.log(this.appointmentsList[0].slotName, "slot name")
             }
             else {
                 console.log(appointments, "appointments failed")
@@ -33,13 +36,13 @@ export class DashboardComponent{
                 }
             
         )
-        const myObserver = {
+        const myObserver = {    
             next: x => x,
             error: err => err,
           };
             this._userDashboardService.getAppointments().subscribe(myObserver)
 
-
+         
       
       }
     
@@ -50,8 +53,9 @@ export class DashboardComponent{
         console.log(this.timeStamps)
     }
 
-    editAppointment = (appointmentId:string) => {
+    editAppointment = (appointmentId: string) => {
+       
         this.router.navigateByUrl(`/appointment/edit/${appointmentId}`)
-        console.log(appointmentId,"id on edit")
+  
     }
 }

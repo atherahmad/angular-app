@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HeadingService } from './heading.service';
 
 @Component({
   selector: 'app-heading',
@@ -6,12 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./heading.component.css']
 })
 export class HeadingComponent implements OnInit {
-  @Input() boxColor: string = "";
-  @Input() headingText: string = "";
-  constructor() { }
+  
+
+  @Input() boxColor: string;
+  @Input() headingText: string;
+    
+  constructor(private headingService:HeadingService) { }
 
   ngOnInit() {
-  console.log(this.headingText, "in shared heading")
+
+    console.log(this.boxColor, this.headingText)
   }
 
 

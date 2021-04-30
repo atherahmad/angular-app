@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-left" id="navbarNav">
       <ul #linkRef class="navbar-nav" data-toggle="collapse" data-target="#navbarNav" >
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!authorized">
           <a routerLinkActive="active " class="nav-link" routerLink='/' name='home'>Home</a>
         </li>
         <li class="nav-item" *ngIf="authorized" >
@@ -16,7 +16,7 @@
           <a routerLinkActive="active " class="nav-link" routerLink='/registeration' name='registeration'>Register</a>
         </li>
 
-        <li class="nav-item " >
+        <li class="nav-item " *ngIf="authorized"  >
           <a routerLinkActive="active " class="nav-link" routerLink='/appointment/create' name='create' >Create</a>
         </li>
 

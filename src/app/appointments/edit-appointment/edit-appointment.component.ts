@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeadingService } from 'src/app/shared/heading/heading.service';
 
 @Component({
   selector: 'app-edit-appointment',
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditAppointmentComponent implements OnInit {
   
-  headingText: string = "Edit Appointment";
   boxColor: string = "#11213b";
-
-  constructor() { }
+  headingText: string = "Edit Appointment";
+  constructor(private heading: HeadingService) { }
 
   ngOnInit() {
+
+    this.heading.setHeading({
+      headingText: "Edit Appointment",
+      boxColor: "#11213b"
+    })
+
   }
 
 }
