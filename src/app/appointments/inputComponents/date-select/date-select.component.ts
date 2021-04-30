@@ -37,7 +37,11 @@ export class DateSelectComponent implements OnInit {
     { name: "Dec", id: 12 }
 ];
 
-  constructor() { }
+  constructor() {
+    for (let i = 1; i < 31; i++){
+      this.years.push(2020 + i);
+  }
+  }
 
   ngOnInit() {
   }

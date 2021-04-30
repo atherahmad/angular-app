@@ -1,12 +1,14 @@
-<div class="row mt-4">
-  <div class="col-lg-5 col-md-8">
-    <mat-form-field appearance="fill" class="select-panel">
-      <mat-label>Select Store</mat-label>
-      <mat-select (selectionChange)="getStoreSlots( $event.value)" *ngIf="stores">
-        <mat-option *ngFor="let store of stores"   [value]="store._id"  (click)="getStoreName(store.storeName)">
-          {{store.storeName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>  
+<div class="constainer">
+  <div class="row mt-4">
+    <div class="col-9" >
+      <mat-form-field appearance="fill" class="select-panel w-100">
+        <mat-label>Select Store</mat-label>
+        <mat-select >
+          <mat-option>
+            Test
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>  
+  </div>
 </div>

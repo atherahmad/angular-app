@@ -1,5 +1,29 @@
 <app-heading   boxColor= {{boxColor}};
 headingText = {{headingText}}></app-heading>
-<app-date-select></app-date-select>
-<!-- <app-store-select></app-store-select>
-<app-slot-select></app-slot-select> -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <app-store-select></app-store-select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <app-date-select></app-date-select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <app-slot-select></app-slot-select>
+        </div>
+    </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-3">
+                <button class="myOrangeButton-lg w-100">Update</button>
+            </div>
+            <div class="col-lg-3">
+                <button class="myBlueButton-lg w-100">Cancel</button>
+            </div>
+        </div>
+</div>
+

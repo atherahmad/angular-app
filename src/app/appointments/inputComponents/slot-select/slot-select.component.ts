@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlotSelectComponent implements OnInit {
 
+  arrayOfSlots: Array<any> = [];
   constructor() { }
 
   ngOnInit() {
