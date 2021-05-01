@@ -9,6 +9,7 @@
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody >
@@ -18,8 +19,13 @@
                 <td>{{appointment.appointmentDate}}</td>
                 <td>{{appointment.slotName | timeslot}}</td>
                 <td>
-                  <button mat-mini-fab color = "basic" (click)="editAppointment(appointment._id)">
+                  <button mat-mini-fab color = "primary" (click)="editAppointment(appointment._id)">
                     <mat-icon>edit</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button mat-mini-fab color = "warn" (click)="openDialog()">
+                    <mat-icon>delete</mat-icon>
                   </button>
                 </td>
               </tr>

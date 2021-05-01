@@ -40,6 +40,7 @@ import { TimeslotPipe } from './timeslot.pipe';
 import { SlotSelectComponent } from './appointments/inputComponents/slot-select/slot-select.component';
 import { StoreSelectComponent } from './appointments/inputComponents/store-select/store-select.component';
 import { DateSelectComponent } from './appointments/inputComponents/date-select/date-select.component';
+import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { DateSelectComponent } from './appointments/inputComponents/date-select/
     TimeslotPipe,
     SlotSelectComponent,
     StoreSelectComponent,
-    DateSelectComponent
+    DateSelectComponent,
+    DialogueBoxComponent
    ],
   imports: [
     BrowserModule,

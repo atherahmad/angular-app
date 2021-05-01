@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { HeadingService } from "../shared/heading/heading.service";
+import { DialogueBoxComponent } from "../shared/dialogue-box/dialogue-box.component";
 import { DashboardService } from "./dashboard.service";
-import { TimeslotPipe } from "../timeslot.pipe";
 
 @Component({
     selector: 'app-dashboard',
@@ -22,7 +22,7 @@ export class DashboardComponent{
     timeStamps = [];
     appointmentsList:Array<any>=[]
 
-    constructor(private _userDashboardService: DashboardService, private router:Router) { }
+    constructor(private _userDashboardService: DashboardService, private router:Router, public dialog: MatDialog) { }
     
     ngOnInit(): void {
         this._userDashboardService.userAppointmentsObserver$
@@ -61,4 +61,10 @@ export class DashboardComponent{
         this.router.navigateByUrl(`/appointment/edit/${appointmentId}`)
   
     }
+
+    openDialog() {
+        this.dialog.open(DialogueBoxComponent);
+    }
+    
+
 }
