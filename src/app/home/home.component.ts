@@ -10,6 +10,9 @@ import { AuthenticationService } from "../services/auth/authentication.service";
 })
 export class HomeComponent{
 
+    boxColor: string = "#11213b";
+    headingText: string = "Digital Appointments";
+
     constructor(private router:Router, private authService:AuthenticationService){}
 
     ngOnInit(): void{

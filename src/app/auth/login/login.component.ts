@@ -9,6 +9,9 @@ import { LoginService } from "src/app/services/auth/login.service";
 })
 
 export class LoginComponent{
+
+    boxColor: string = "#11213b";
+    headingText: string = "Sign In";
     email: string = '';
     password: string = '';
     validInput: boolean = false;

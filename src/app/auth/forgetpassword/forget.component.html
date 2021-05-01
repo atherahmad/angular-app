@@ -1,20 +1,21 @@
-<div class="flex ">
-    <div class="row">
-        <div class="align-item-center col-lg-6 col-md-8 col-sm-10 col-xs-12">
-            <div class="resetModal-form justify-content-center">
-                <div class="heading-box">
-                    <h2 class="mb-5 p-2">Reset Password</h2>
+<app-heading   boxColor= {{boxColor}} headingText = {{headingText}}></app-heading>
+
+<div class="container ">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-6  col-md-8 col-xs-12 col-sm-10">
+                        <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email" [(ngModel)]="email" (change)="changeHandler()">
+                    </div>
                 </div>
-                <div class="resetModal-center justify-content-center">
-                    <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email" [(ngModel)]="email" (change)="changeHandler()">
+                <div class="row justify-content-center">
                     <p class="mt-2 myText2">
                     <strong>
                     Please provide your email address to reset password.
                     </strong>
                     </p>
                 </div>
-                <div class="resetModal-btn justify-content-center">
-                    <button class="myRedButton-lg" type="button" (click)="handleClose()">
+                <div class="row">
+                    <button class="myBlueButton-lg" type="button" (click)="handleClose()">
                     Close
                     </button>
                     <button class="myOrangeButton-lg ml-1" type="button" (click)="resetHandler()">
@@ -25,11 +26,8 @@
     
                     </div>
                 </div>
-                <div class="resetModal-btn justify-content-center">
+                <div class="row">
                     <p class="text-danger" *ngIf="showError">Please fill out the email field.</p>
                 </div>
                 
-            </div>
-        </div>
-    </div>
 </div>

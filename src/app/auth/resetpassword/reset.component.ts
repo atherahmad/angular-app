@@ -9,6 +9,9 @@ import { LoginService } from "src/app/services/auth/login.service";
 })
 
 export class ResetPassword implements OnInit{
+
+    headingText: string = "Change Password";
+    boxColor: string = "#ff8b0d";
     password: string = "";
     confirmPassword: string = "";
     showInputError: boolean = false;
@@ -53,7 +56,6 @@ export class ResetPassword implements OnInit{
                 }
             
         )
-  
       }
 
     changeHandler = () => {

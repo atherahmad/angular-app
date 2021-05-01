@@ -8,6 +8,9 @@ import { LoginService } from "src/app/services/auth/login.service";
     styleUrls: ['./forget.component.css']
 })
 export class ForgetPassword {
+
+    boxColor: string = "#ff8b0d";
+    headingText:string="Reset Password"
     email: string = "";
     validInput: boolean = false;
     showError: boolean = false;

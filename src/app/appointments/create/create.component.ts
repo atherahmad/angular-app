@@ -10,6 +10,9 @@ import { CreateAppointmentService } from "./create-appointment.service";
     styleUrls:['./create.component.css']
 })
 export class CreateAppointment{
+
+    headingText: string = "Create Appointment";
+    boxColor: string = "#11213b";
     public stores: Array<any> = [];
     leapYearCheck: boolean = false;
     selectedMonth: number;

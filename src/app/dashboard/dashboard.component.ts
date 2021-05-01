@@ -13,6 +13,9 @@ import { TimeslotPipe } from "../timeslot.pipe";
 })
 
 export class DashboardComponent{
+
+    boxColor: string = "#11213b";
+    headingText: string = "Active Appointments";
     servers = ['First Server', 'Second Server'];
     serverName: string;
     showHiddenText: boolean = false;

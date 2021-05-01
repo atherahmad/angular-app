@@ -10,6 +10,8 @@ import { RegisterService } from "./register.service";
 
 export class RegisterComponent{
 
+    boxColor: string = "#11213b";
+    headingText: string = "Register";
     firstName: string = "";
     lastName: string = "";
     email: string = "";

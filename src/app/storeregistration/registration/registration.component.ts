@@ -11,6 +11,8 @@ import { CreateStoreService } from "src/app/services/store/create.service";
 
 export class StoreRegistration{
 
+    boxColor: string = "#11213b";
+    headingText: string = "Store";
     passwordMatchError: boolean = false;
     formError: boolean = false;
     openingHoursArray: Array<object> = [];

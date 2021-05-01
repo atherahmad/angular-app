@@ -10,6 +10,9 @@ import { ContactService } from "./contact.service";
 })
 export class ContactComponentComponent implements OnInit {
 
+    boxColor: string = "#11213b";
+    headingText: string = "Contact";
+
     name: string = "";
     email: string = "";
     subject: string = "";
@@ -17,8 +20,8 @@ export class ContactComponentComponent implements OnInit {
     formError: boolean = false;
     responseError: boolean = false;
     responseErrorText: string = "";
-  successfullyContacted: boolean = false;
-  requestInProcess: boolean = false;
+    successfullyContacted: boolean = false;
+    requestInProcess: boolean = false;
 
     contactDetails = {
         name: "",
@@ -61,7 +64,7 @@ let modal = {
   
   redirectToHome = () => {
   
-    if (localStorage.getItem("c2c-token")) this.router.navigateByUrl('/')
+    if (localStorage.getItem("c2c-token")) this.router.navigateByUrl('/dashboard')
     else this.router.navigateByUrl('/')
 }
 }

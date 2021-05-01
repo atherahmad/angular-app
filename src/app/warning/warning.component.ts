@@ -8,6 +8,8 @@ import { Component, OnInit } from "@angular/core";
 
 export class WarningComponent implements OnInit{
 
+    boxColor: string = "#11213b";
+    headingText: string = "Under Development";
     constructor(){
 
     }
