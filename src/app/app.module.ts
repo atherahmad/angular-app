@@ -44,6 +44,9 @@ import { DateSelectComponent } from './appointments/inputComponents/date-select/
 import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.component';
 
 
+
+
+
 @NgModule({
   declarations: [		
     AppComponent,
@@ -86,7 +89,8 @@ import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.compone
     MatSelectModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    
     
 
 

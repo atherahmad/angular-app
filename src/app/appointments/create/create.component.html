@@ -4,8 +4,8 @@
     <div class="row justify-content-center mt-3">
       <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
 
-          <div class="row">
-              <mat-form-field appearance="fill" class="select-panel">
+          <div class="row m-1">
+              <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Select Store</mat-label>
                 <mat-select (selectionChange)="getStoreSlots( $event.value)" *ngIf="stores">
                   <mat-option *ngFor="let store of stores"   [value]="store._id"  (click)="getStoreName(store.storeName)">
@@ -17,7 +17,7 @@
         
           <div class="row mt-3">
             <div class="col-4">
-              <mat-form-field appearance="fill" class="select-panel-date m-2">
+              <mat-form-field appearance="fill" class=" w-100">
                 <mat-label>Year</mat-label>
                 <mat-select (selectionChange)="yearSelector($event.value)">
                   <mat-option *ngFor="let year of years" [value]="year">
@@ -28,7 +28,7 @@
             </div>
           
             <div class="col-4">
-              <mat-form-field appearance="fill" class="select-panel-date m-2">
+              <mat-form-field appearance="fill" class=" w-100">
                 <mat-label>Month</mat-label>
                 <mat-select (selectionChange)="monthSelector($event.value)">
                   <mat-option *ngFor="let month  of monthsOfYear; let i=index" [value]="month.id">
@@ -39,7 +39,7 @@
             </div>
           
             <div class="col-4">
-              <mat-form-field appearance="fill" class="select-panel-date m-2">
+              <mat-form-field appearance="fill" class=" w-100">
                 <mat-label>Day</mat-label>
                 <mat-select (selectionChange)="daySelector($event.value)">
                     <mat-option *ngFor="let date of daysOfMonth" [value]="date">
@@ -50,8 +50,8 @@
             </div>
           </div>
         
-        <div class="row mt-3">
-            <mat-form-field appearance="fill" class="select-panel">
+        <div class="row m-1">
+            <mat-form-field appearance="fill" class="w-100">
               <mat-label>Available Time Slots</mat-label>
               <mat-select  *ngIf="arrayOfSlots" (selectionChange)="slotSelector($event.value)">
                 <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" (click)="getSlotName(slot.appointmentStartTime,slot.appointmentEndTime)">

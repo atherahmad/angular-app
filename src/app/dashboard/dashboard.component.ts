@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { DeleteAppointmentService } from "../appointments/delete-appointment.service";
 import { DialogueBoxComponent } from "../shared/dialogue-box/dialogue-box.component";
 import { DashboardService } from "./dashboard.service";
 
@@ -62,9 +63,19 @@ export class DashboardComponent{
   
     }
 
-    openDialog() {
-        this.dialog.open(DialogueBoxComponent);
+    openDialog(id: string) {
+        
+        const dialogRef=this.dialog.open(DialogueBoxComponent, {
+            data: {
+                id
+            }
+        })
+        dialogRef.
+            afterClosed().subscribe(result => {
+            if(result.status == 'success'){
+                this.appointmentsList = this.appointmentsList.filter(appointment => appointment._id != result.id);
+                console.log("appointments after filter", this.appointmentsList)
+            }
+          });
+        }
     }
-    
-
-}

@@ -15,8 +15,6 @@ export class HeadingComponent implements OnInit {
   constructor(private headingService:HeadingService) { }
 
   ngOnInit() {
-
-    console.log(this.boxColor, this.headingText)
   }
 
 
