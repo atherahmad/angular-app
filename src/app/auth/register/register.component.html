@@ -1,9 +1,9 @@
 <app-heading   boxColor= {{boxColor}} headingText = {{headingText}}></app-heading>
-<div class="container">
-    <div class="row mt-3">
-        
+<div class="container mt-5">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
         <form >
-                <div class="container" *ngIf="!successfullRegistration">
+                <div *ngIf="!successfullRegistration">
 
                     <input
                         label="First Name"
@@ -56,25 +56,22 @@
                     <p class="sText" *ngIf="formError">All fields are required.</p>
 
 
-                    <div class="row justify-content-center">
-                    <button class="myBlueButton-lg m-2 mt-4 w-100" type='button' (click)="submitHandler()">
+                    
+                    <button class="myBlueButton-lg mt-4 w-100" type='button' (click)="submitHandler()">
                         Submit
                     </button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <mat-progress-bar mode="indeterminate" *ngIf="requestInProcess" color="warn"></mat-progress-bar>
-                        <p class="sText" *ngIf="responseErrorText">{{responseErrorText}}</p>
-
-                        </div>
-        
+                    <mat-progress-bar class="mt-3" mode="indeterminate" *ngIf="requestInProcess" ></mat-progress-bar>
+                    <p class="sText" *ngIf="responseErrorText">{{responseErrorText}}</p>
                     <p class="mt-5 myText text-dark">Are you already registered with us? <a  class="badge badge-info active" routerLink='/login' >Login Here!</a></p>
                    </div>
-                   <div class="container mt-5 mb-5" *ngIf="successfullRegistration">
-                    <h4>You have successfully Registered with us. We have sent you confirmation email, please confirm that.</h4>
-                    <button class="myBlueButton-lg m-2 mb-5 mt-5 w-100" routerLink='/login' >
+
+                    <div *ngIf="successfullRegistration">
+                        <h4>You have successfully Registered with us. We have sent you confirmation email, please confirm that.</h4>
+                        <button class="myBlueButton-lg m-2 mb-5 mt-5 w-100" routerLink='/login' >
                         Go To Login
-                    </button>
-                </div>
+                        </button>
+                    </div>
         </form>
+    </div>
     </div>
 </div>

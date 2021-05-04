@@ -14,7 +14,8 @@ export class ForgetPassword {
     email: string = "";
     validInput: boolean = false;
     showError: boolean = false;
-    requestInProccess: boolean = false;                                                                                                                                                                                                      
+    requestInProccess: boolean = false;
+    linkSent: boolean = false;
 
     constructor(private authService: LoginService, private router: Router) {
         
@@ -29,11 +30,10 @@ export class ForgetPassword {
             const myObserver = {
                 next: (x) => {
                     this.requestInProccess = false;
-                    this.router.navigateByUrl('/login');
+                    this.linkSent = true;
                 },
                 error: err => {
                     this.requestInProccess = false;
-                    console.log(this.email)
                 }
             };
             let modal = {

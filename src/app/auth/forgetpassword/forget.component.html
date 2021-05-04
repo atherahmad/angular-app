@@ -1,33 +1,27 @@
 <app-heading   boxColor= {{boxColor}} headingText = {{headingText}}></app-heading>
 
 <div class="container ">
+    <div class="row justify-content-center mt-5" *ngIf="!linkSent">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
 
-                <div class="row justify-content-center">
-                    <div class="col-lg-6  col-md-8 col-xs-12 col-sm-10">
-                        <input class="form-control input-lg mt-5"  type="email" placeholder="Enter you email" [(ngModel)]="email" (change)="changeHandler()">
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <p class="mt-2 myText2">
-                    <strong>
-                    Please provide your email address to reset password.
-                    </strong>
-                    </p>
-                </div>
-                <div class="row">
-                    <button class="myBlueButton-lg" type="button" (click)="handleClose()">
-                    Close
-                    </button>
-                    <button class="myOrangeButton-lg ml-1" type="button" (click)="resetHandler()">
-                    Reset
-                    </button>
-                    <div class="resetModal-btn justify-content-center" *ngIf="requestInProccess">
-                        <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
-    
-                    </div>
-                </div>
-                <div class="row">
-                    <p class="text-danger" *ngIf="showError">Please fill out the email field.</p>
-                </div>
-                
+            <input class="form-control input-lg "  type="email" placeholder="Enter you email" [(ngModel)]="email" (change)="changeHandler()">
+            <p class="mt-2 myText2"><strong>Please provide your email address to reset password.</strong></p>
+            <button class="myBlueButton-lg w-100 mt-2" type="button" (click)="handleClose()">Close</button>
+            <button class="myOrangeButton-lg w-100 mt-2" type="button" (click)="resetHandler()">Reset</button>
+            <mat-progress-bar class="mt-2" mode="indeterminate" *ngIf="requestInProccess"></mat-progress-bar>
+            <p class="text-danger" *ngIf="showError">Please fill out the email field.</p>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5" *ngIf="linkSent">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <h4>We have successfully sent you passorwd reset link at your given email address. </h4>
+            <button class="myBlueButton-lg m-2 mb-5 mt-3 w-100" routerLink='/login' >
+            Go To Login
+            </button>
+
+        </div>
+    </div>
+
 </div>

@@ -23,6 +23,7 @@ export class ResetPassword implements OnInit{
     requestInProccess: boolean = false;
     requestError: string = "";
 
+
     constructor(private authService: LoginService, private router: Router,private route: ActivatedRoute) {
       
     }
