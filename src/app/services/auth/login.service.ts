@@ -16,6 +16,9 @@ export class LoginService {
   private _loginRequestSource = new Subject<string>();
   loginRequestObserver$ = this._loginRequestSource.asObservable();
 
+  private _confirmationSource = new Subject<boolean>();
+  confirmationSource$ = this._confirmationSource.asObservable();
+
   private _userData = new Subject<any>();
   userData$ = this._userData.asObservable();
 
@@ -24,9 +27,16 @@ export class LoginService {
   setAuthorization = (status: string) => {
     this._loginRequestSource.next(status)
   }
+
   setUserData = (data: any) => {
     this._userData.next(data)
   }
+
+  setEmailConfirmation = (status: boolean) => {
+    this._confirmationSource.next(status)
+  }
+
+
   login = (modal: any) => {
 
     return this.http.post(this.authUrl + 'auth/signin', modal).pipe(
@@ -87,8 +97,8 @@ export class LoginService {
     return this.http.post(this.authUrl + 'auth/confirm', modal).pipe(
       map((response: any) => {
         const result = response;
-        if (result.status == "success") console.log("you have succesfully confirmed your account")
-        else console.log("confirmation failed")
+        if (result.status == "success") this.setEmailConfirmation(result.status)
+        else this.route.navigateByUrl('/login')
       })
     )
   }

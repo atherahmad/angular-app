@@ -32,16 +32,22 @@ export class AccountconfirmationComponent{
         token: this.token
       }
     }
-    console.log(this.token,this.id)
     const myObserver = {
       next: x => this.confirmed = true,
       error: err => console.log(err),
     };
     this.authService.accountConfirmation(modal).subscribe(myObserver);
     
-    
 
-  } 
+      this.authService.confirmationSource$
+      .subscribe(
+        (status) => {
+          if (status == true) this.confirmed = true;
+          else console.log("confirmation failed")
+        }
+      )
+  }
+  
   goToHome = () => {
     this.router.navigateByUrl('/login')
   }
