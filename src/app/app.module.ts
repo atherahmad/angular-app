@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -90,7 +91,7 @@ import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.compone
 
 
   ],
-  providers: [CreateStoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},ContactService],
+  providers: [CreateStoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},ContactService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
