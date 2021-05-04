@@ -7,7 +7,7 @@
                   <small class="text-danger" *ngIf="showWarningText">Please fill out both fields.</small>
                   <small class="text-danger" *ngIf="requestError">{{requestError}}</small>
                   <button class="myBlueButton-lg w-100 mt-5" type="button" (click)="loginHandler()"> Sign in </button>
-                  <mat-progress-bar class="w-75" mode="indeterminate" *ngIf="requestInProcess"></mat-progress-bar>
+                  <mat-progress-bar class="w-100 mt-2" mode="indeterminate" *ngIf="requestInProcess"></mat-progress-bar>
                   <p class="mt-5 myText text-dark">Are you not registered with us? <a  class="badge badge-dark active" routerLink='/registeration' >Register!</a></p>
                   <p class="mt-1 myText">Forgot Password?
                   <strong class="L" routerLink='/register' ><a  class="badge badge-warning active" routerLink='/forgetpassword' > Click here</a></strong></p>
