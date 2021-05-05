@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs'
 import { map } from 'rxjs/operators';
+import {environment} from "../../../environments/environment"
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class StoreslotsService {
   private _storeSlotstSource = new Subject<any>();
   storeSlotsObserver$ = this._storeSlotstSource.asObservable();
 
-  private storeListUrl:string = `https://appointment-app-backend.herokuapp.com/api/`
+  private _url: string = environment.hostUrl;
 
 constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ getSlots = (id: string) => {
     id
   }
   console.log("type of id ", typeof(model))
-  return this.http.post(this.storeListUrl + 'store/storeslots', model).pipe(
+  return this.http.post(this._url + 'store/storeslots', model).pipe(
     map((response: any) => {
       const result = response;
       if (result.status === "success") {

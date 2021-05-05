@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {environment} from "../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  private authUrl: string = "https://appointment-app-backend.herokuapp.com/api/dashboard/"
+  private _url: string = environment.hostUrl;
 
 
   private _userAppointments = new Subject<any>();
@@ -25,7 +26,7 @@ export class DashboardService {
     getAppointments=()=>{
       
 
-      return this.http.get(this.authUrl + 'appointments').pipe(
+      return this.http.get(this._url + 'dashboard/appointments').pipe(
         map((response: any) => {
           const appointments = response;
           console.log("appointments in service", appointments)

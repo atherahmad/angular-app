@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {environment} from "../../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
 
   
-  private authUrl: string = "https://appointment-app-backend.herokuapp.com/api/";
-  //private authUrl: string = "http://localhost:5000/api/";
+  private _url: string = environment.hostUrl;
   
   private _userData = new Subject<any>();
   userData$ = this._userData.asObservable();
@@ -23,7 +23,7 @@ export class AuthenticationService {
 
   tokenCheck = () => {
     
-    return this.http.get(this.authUrl + 'auth/authenticated').pipe(
+    return this.http.get(this._url + 'auth/authenticated').pipe(
       map((response: any) => {
         const user = response;
         if (user.status == "success") {

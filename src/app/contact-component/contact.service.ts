@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {environment} from "../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class ContactService{
   contactRequestObserver$ = this._contactRequestSource.asObservable();
 
  
-  private contactUrl: string = "https://appointment-app-backend.herokuapp.com/api/";
-  //private contactUrl: string = "http://localhost:5000/api/";
+  private _url: string = environment.hostUrl;
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -25,7 +26,7 @@ export class ContactService{
 
 
   contactHandler = (modal: any) => {
-    return this.http.post(this.contactUrl + 'contact/querry', modal).pipe(
+    return this.http.post(this._url + 'contact/querry', modal).pipe(
       map((response: any) => {
         const result = response;
         if (result.status === "success") {

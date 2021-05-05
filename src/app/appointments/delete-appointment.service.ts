@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {environment} from "../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeleteAppointmentService {
 
-  //private _url = 'https://appointment-app-backend.herokuapp.com/api/';
-  private _url = 'http://localhost:5000/api/';
+  private _url = environment.hostUrl;
 
   private _appoinmentRemover = new Subject<string>();
   appointmentObserver$ = this._appoinmentRemover.asObservable();

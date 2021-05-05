@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {environment} from "../../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CreateStoreService {
   private _storeRegistrationSource = new Subject<string>();
   storeRegistration$ = this._storeRegistrationSource.asObservable();
 
-  private storeUrl:string="https://appointment-app-backend.herokuapp.com/api/store/"
+  private _url: string = environment.hostUrl;
 
   constructor(private http: HttpClient, private route: Router) { }
   
@@ -21,7 +22,7 @@ export class CreateStoreService {
   }
 
   registerStore = (modal: any) => {
-    return this.http.post(this.storeUrl+'register', modal).pipe(
+    return this.http.post(this._url+'store/register', modal).pipe(
       map((response: any) => {
         const result = response;
         if (result.status == "success") {
