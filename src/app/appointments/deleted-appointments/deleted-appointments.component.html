@@ -1,3 +1,31 @@
-<p>
-  deleted-appointments works!
-</p>
+<app-heading   boxColor= {{boxColor}} headingText = {{headingText}}></app-heading>
+<div class="container mt-5">
+  <div class="row mt-3 justify-content-center">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Store Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Deleted</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let appointment of appointmentsList; let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{appointment.storeName}}</td>
+              <td>{{appointment.appointmentDate}}</td>
+              <td>{{appointment.slotName | timeslot}}</td>
+              <td>
+                {{appointment.cancelledByUser?"by User":"By Store Owner"}}
+              </td>
+              <td>
+                  Details
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>

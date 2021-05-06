@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {environment} from "../../environments/environment"
@@ -15,9 +14,9 @@ export class DashboardService {
 
   private _userAppointments = new Subject<any>();
   userAppointmentsObserver$= this._userAppointments.asObservable()
+ 
 
-
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient) { }
 
 
     setUserAppointments = (data: any) => {

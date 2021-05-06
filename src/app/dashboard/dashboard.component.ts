@@ -32,11 +32,7 @@ export class DashboardComponent{
             if (appointments.status == "success")
             {
                 this.appointmentsList = appointments.message
-                console.log(this.appointmentsList[0].slotName, "slot name")
             }
-            else {
-                console.log(appointments, "appointments failed")
-              }
                 }
             
         )
