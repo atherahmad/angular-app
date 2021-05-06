@@ -1,8 +1,6 @@
 <mat-form-field appearance="fill" class="select-panel w-100">
-        <mat-label>Select Store</mat-label>
-        <mat-select >
-          <mat-option>
-            Test
-          </mat-option>
+        <mat-label>Selected Store</mat-label>
+        <mat-select [(value)]="storeName" >
+          <mat-option [(value)]="storeName">{{storeName}}</mat-option>
         </mat-select>
 </mat-form-field>

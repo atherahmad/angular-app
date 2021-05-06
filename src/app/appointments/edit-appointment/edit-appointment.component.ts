@@ -10,14 +10,18 @@ export class EditAppointmentComponent implements OnInit {
   
   boxColor: string = "#11213b";
   headingText: string = "Edit Appointment";
+  selectedStore: string;
+  preSelectedMonth: number;
+  preSelectedYear: number;
+  preSelectedDay: number;
+  storeId: string;
+  preSelectedSlotNumber;
+
+
   constructor(private heading: HeadingService) { }
 
   ngOnInit() {
 
-    this.heading.setHeading({
-      headingText: "Edit Appointment",
-      boxColor: "#11213b"
-    })
 
   }
 

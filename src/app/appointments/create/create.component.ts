@@ -59,7 +59,7 @@ export class CreateAppointment{
         }
         this._storeService.getStores().subscribe(myObserver);
 
-    }
+    }//
     ngOnInit() {
         this._storeService.storeListObserver$
             .subscribe(data => {

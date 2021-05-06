@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-date-select',
@@ -10,7 +10,7 @@ export class DateSelectComponent implements OnInit {
   public stores: Array<any> = [];
     leapYearCheck: boolean = false;
     selectedMonth: number;
-    daysOfMonth: Array<string> = [];
+    daysOfMonth: Array<number> = [];
     years: Array<number> = [];
     selectedStoreId: string = "";
     arrayOfSlots: Array<any> = [];
@@ -20,8 +20,12 @@ export class DateSelectComponent implements OnInit {
     selectedDay: number;
     appointmentCreated: boolean = true
     storeName: string = "";
-  slotName: string = "";
+    slotName: string = "";
   
+    @Input() preSelectedMonth: number;
+    @Input() preSelectedYear: number;
+    @Input() preSelectedDay: number;
+
   monthsOfYear = [
     { name: "Jan", id: 1 },
     { name: "Feb", id: 2 },
@@ -44,6 +48,27 @@ export class DateSelectComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.preSelectedYear % 4 == 1) this.leapYearCheck = true;
+    else this.leapYearCheck = false;
+    let daysLimit: Number;
+
+    if (this.preSelectedMonth <= 7) {
+      if (this.preSelectedMonth  == 2)
+      {
+          if (this.leapYearCheck)  daysLimit = 28;
+          else  daysLimit = 29;
+      }
+      else
+          if (this.preSelectedMonth  % 2 == 0)  daysLimit = 30;
+          else  daysLimit = 31;
+  }
+  else this.preSelectedMonth  % 2 === 0 ? daysLimit = 31 : daysLimit = 30;
+    
+  for (let i = 1; i <= daysLimit; i++){
+      this.daysOfMonth.push(i)
+  }
+
+
   }
 
   yearSelector = (year:string) => {
@@ -72,11 +97,11 @@ monthSelector = (month: number) => {
     else month % 2 === 0 ? daysLimit = 31 : daysLimit = 30;
       
     for (let i = 1; i <= daysLimit; i++){
-        this.daysOfMonth.push(('0' + i).slice(-2))
+        this.daysOfMonth.push(i)
     }
 }
 
-daySelector = (day:string) => {
-    this.selectedDay = +day;
+  daySelector = (day: number) => {
+    this.selectedDay = day;
 }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StoreslotsService } from 'src/app/services/store/storeslots.service';
 
 @Component({
   selector: 'app-slot-select',
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class SlotSelectComponent implements OnInit {
 
   arrayOfSlots: Array<any> = [];
-  constructor() { }
+  @Input() storeId: string;
+  @Input() preSelectedSlotNumber:number;
+  constructor(private _storeSlotsService: StoreslotsService) { }
 
   ngOnInit() {
+    this._storeSlotsService.storeSlotsObserver$
+            .subscribe(data => { 
+                this.arrayOfSlots=data
+            })
+    const model: string = this.storeId;
+    this._storeSlotsService.getSlots(model).subscribe()
   }
 
 }
