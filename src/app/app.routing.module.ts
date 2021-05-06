@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateAppointment } from './appointments/create/create.component';
+import { DeletedAppointmentsComponent } from './appointments/deleted-appointments/deleted-appointments.component';
 import { EditAppointmentComponent } from './appointments/edit-appointment/edit-appointment.component';
 import { AccountconfirmationComponent } from './auth/accountconfirmation/accountconfirmation.component';
 import { ForgetPassword } from './auth/forgetpassword/forget.component';
@@ -60,6 +61,10 @@ const routes: Routes = [
             path: 'store/registration',
             component: StoreRegistration
     },
+    {
+        path: 'appointment/deleted',
+        component:DeletedAppointmentsComponent
+        },
     {
         path: 'heading',
         component: HeadingComponent

@@ -42,6 +42,8 @@ import { SlotSelectComponent } from './appointments/inputComponents/slot-select/
 import { StoreSelectComponent } from './appointments/inputComponents/store-select/store-select.component';
 import { DateSelectComponent } from './appointments/inputComponents/date-select/date-select.component';
 import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.component';
+import { DatePickerComponent } from './appointments/inputComponents/date-picker/date-picker.component';
+import { DeletedAppointmentsComponent } from './appointments/deleted-appointments/deleted-appointments.component';
 
 
 
@@ -74,8 +76,10 @@ import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.compone
     SlotSelectComponent,
     StoreSelectComponent,
     DateSelectComponent,
-    DialogueBoxComponent
-   ],
+    DialogueBoxComponent,
+    DatePickerComponent,
+    DeletedAppointmentsComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -90,9 +94,6 @@ import { DialogueBoxComponent } from './shared/dialogue-box/dialogue-box.compone
     HttpClientModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    
-    
-
 
   ],
   providers: [CreateStoreService,{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},ContactService,{provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -47,7 +47,16 @@ ngOnInit(): void {
           this.router.navigateByUrl('/dashboard') 
         }
             }
-          )
+  )
+  
+  this.authService.validUser$
+    .subscribe((data) => {
+      if (data.status === "success") {
+        this.authorized = true;
+        this.firstName = data.data.firstName;
+        this.lastName = data.data.lastName;
+              }
+            })
 
 }
   setAuthorized = () => this.authorized = true;
