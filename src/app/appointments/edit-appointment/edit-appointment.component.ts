@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeadingService } from 'src/app/shared/heading/heading.service';
+import { ActivatedRoute } from '@angular/router';
+import { AppointmentDetailsService } from '../appointment-details.service';
 
 @Component({
   selector: 'app-edit-appointment',
@@ -16,13 +17,25 @@ export class EditAppointmentComponent implements OnInit {
   preSelectedDay: number;
   storeId: string;
   preSelectedSlotNumber;
+  appointmentId: string;
 
 
-  constructor(private heading: HeadingService) { }
+  constructor(private _appointmentDetailService: AppointmentDetailsService, private activatedRoute:ActivatedRoute) {
+
+   }
 
   ngOnInit() {
-
-
+    this.appointmentId = this.activatedRoute.snapshot.paramMap.get('id');
+    this._appointmentDetailService.getAppointmentDetails(this.appointmentId)
+      .subscribe((data:any) => {
+        console.log(data)
+        if (data.status == "success") {
+          console.log(data.message, "store name")
+          this.selectedStore = data.message.storeName
+          this.preSelectedSlotNumber = data.message.appoointmentSlot
+          
+        }
+      })
   }
 
 }
