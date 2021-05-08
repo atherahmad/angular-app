@@ -16,7 +16,7 @@ export class SlotSelectComponent implements OnInit {
   ngOnInit() {
     this._storeSlotsService.storeSlotsObserver$
             .subscribe(data => { 
-                this.arrayOfSlots=data
+              this.arrayOfSlots = data
             })
     const model: string = this.storeId;
     this._storeSlotsService.getSlots(model).subscribe()

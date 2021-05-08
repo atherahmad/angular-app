@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill" class="select-panel w-100">
-        <mat-label>Selected Store</mat-label>
-        <mat-select [(value)]="storeName" >
-          <mat-option [(value)]="storeName">{{storeName}}</mat-option>
-        </mat-select>
+  <mat-label>Selected Store</mat-label>
+  <mat-select [(ngModel)]="preSelectedStoreId">
+    <mat-option [value]="preSelectedStoreId">{{preSelectedStoreName}}</mat-option>
+  </mat-select>
 </mat-form-field>

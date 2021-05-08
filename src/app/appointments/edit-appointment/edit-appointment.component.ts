@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentDetailsService } from '../appointment-details.service';
 
 @Component({
@@ -11,31 +11,36 @@ export class EditAppointmentComponent implements OnInit {
   
   boxColor: string = "#11213b";
   headingText: string = "Edit Appointment";
-  selectedStore: string;
-  preSelectedMonth: number;
-  preSelectedYear: number;
-  preSelectedDay: number;
-  storeId: string;
-  preSelectedSlotNumber;
+
+  preSelectedStoreName: string;
+  preSelectedDate: string;
+  preSelectedStoreId: string;
+  preSelectedSlotNumber:number;
   appointmentId: string;
+  
 
 
-  constructor(private _appointmentDetailService: AppointmentDetailsService, private activatedRoute:ActivatedRoute) {
+  constructor(private _appointmentDetailService: AppointmentDetailsService, private activatedRoute:ActivatedRoute, private route:Router) {
 
    }
 
   ngOnInit() {
+    if(!localStorage.getItem("c2c-token")) this.route.navigateByUrl("/")
     this.appointmentId = this.activatedRoute.snapshot.paramMap.get('id');
     this._appointmentDetailService.getAppointmentDetails(this.appointmentId)
       .subscribe((data:any) => {
-        console.log(data)
         if (data.status == "success") {
-          console.log(data.message, "store name")
-          this.selectedStore = data.message.storeName
-          this.preSelectedSlotNumber = data.message.appoointmentSlot
+          this.preSelectedStoreName = data.message.storeName;
+          this.preSelectedDate = data.message.appointmentDate;
+          this.preSelectedSlotNumber = data.message.appoointmentSlot;
+          this.preSelectedStoreId = data.message.storeId;
           
         }
       })
   }
+
+  cancelUpdate = () => this.route.navigateByUrl("/dashboard")
+  
+  updateAppointment=()=>console.log("update appointment")
 
 }

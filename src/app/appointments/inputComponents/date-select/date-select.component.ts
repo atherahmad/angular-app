@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-date-select',
@@ -8,23 +8,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DateSelectComponent implements OnInit {
 
   public stores: Array<any> = [];
-    leapYearCheck: boolean = false;
-    selectedMonth: number;
-    daysOfMonth: Array<number> = [];
-    years: Array<number> = [];
-    selectedStoreId: string = "";
-    arrayOfSlots: Array<any> = [];
-    slotNumber: string = "";
-    selectedSlotYear: string = "";
-    selectedSlotMonth: number;
-    selectedDay: number;
-    appointmentCreated: boolean = true
-    storeName: string = "";
-    slotName: string = "";
-  
-    @Input() preSelectedMonth: number;
-    @Input() preSelectedYear: number;
-    @Input() preSelectedDay: number;
+  leapYearCheck: boolean = false;
+  selectedMonth: number;
+  daysOfMonth: Array<number> = [];
+  years: Array<number> = [];
+  selectedStoreId: string = "";
+  arrayOfSlots: Array<any> = [];
+  slotNumber: string = "";
+  selectedSlotYear: string = "";
+  selectedSlotMonth: number;
+  selectedDay: number;
+  appointmentCreated: boolean = true
+  storeName: string = "";
+  slotName: string = "";
+  preSelectedMonth: number;
+  preSelectedYear: number;
+  preSelectedDay: number;
+  dateArray: Array<string>;
+
+  @Input() preSelectedDate: string;
 
   monthsOfYear = [
     { name: "Jan", id: 1 },
@@ -42,12 +44,18 @@ export class DateSelectComponent implements OnInit {
 ];
 
   constructor() {
+    
+  
+
     for (let i = 1; i < 31; i++){
       this.years.push(2020 + i);
-  }
+    }
+    
   }
 
   ngOnInit() {
+    
+
     if (this.preSelectedYear % 4 == 1) this.leapYearCheck = true;
     else this.leapYearCheck = false;
     let daysLimit: Number;
@@ -69,6 +77,14 @@ export class DateSelectComponent implements OnInit {
   }
 
 
+  }
+  ngDoCheck() {
+    if (this.preSelectedDate) {
+      this.dateArray = this.preSelectedDate.split("/");
+      this.preSelectedDay = +this.dateArray[0];
+      this.preSelectedMonth = +this.dateArray[1];
+      this.preSelectedYear = +this.dateArray[2];
+    }
   }
 
   yearSelector = (year:string) => {

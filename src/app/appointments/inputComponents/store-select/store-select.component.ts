@@ -7,10 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StoreSelectComponent implements OnInit {
 
-  @Input() storeName: string;
-  constructor() { }
+  @Input() preSelectedStoreName: string;
+  @Input() preSelectedStoreId: string;
+
+  constructor() {
+    
+   }
 
   ngOnInit() {
+  
   }
 
 

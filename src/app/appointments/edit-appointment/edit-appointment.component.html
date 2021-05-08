@@ -2,11 +2,11 @@
 <div class="container">
     <div class="row justify-content-center mt-3">
         <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
-            <app-store-select [storeName]="selectedStore"></app-store-select>
-            <app-date-select [preSelectedYear]="preSelectedYear" [preSelectedMonth]="preSelectedMonth"  [preSelectedDay]="preSelectedDay" ></app-date-select>
-            <app-slot-select [storeId]="storeId" [preSelectedSlotNumber]="preSelectedSlotNumber"></app-slot-select>
-            <button class="myOrangeButton-lg w-100 mt-3">Update</button>
-            <button class="myBlueButton-lg w-100 mt-3">Cancel</button>
+            <app-store-select [preSelectedStoreName]="preSelectedStoreName" [preSelectedStoreId]="preSelectedStoreId"></app-store-select>
+            <app-date-select [preSelectedDate]="preSelectedDate" ></app-date-select>
+            <app-slot-select *ngIf="preSelectedStoreId" [storeId]="preSelectedStoreId" [preSelectedSlotNumber]="preSelectedSlotNumber"></app-slot-select>
+            <button class="myOrangeButton-lg w-100 mt-3" (click)="updateAppointment()">Update</button>
+            <button class="myBlueButton-lg w-100 mt-3" (click)="cancelUpdate()">Cancel</button>
         </div>
     </div>
 </div>
