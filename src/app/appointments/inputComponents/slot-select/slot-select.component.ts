@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StoreslotsService } from 'src/app/services/store/storeslots.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class SlotSelectComponent implements OnInit {
   arrayOfSlots: Array<any> = [];
   @Input() storeId: string;
   @Input() preSelectedSlotNumber: number;
-  validSlot: boolean = true;
+  @Output() newSlotEvent = new EventEmitter<object>();
+  
   constructor(private _storeSlotsService: StoreslotsService) { }
 
   ngOnInit() {
@@ -22,13 +23,8 @@ export class SlotSelectComponent implements OnInit {
     const model: string = this.storeId;
     this._storeSlotsService.getSlots(model).subscribe()
   }
-  slotSelector = (slot: string) => {
-    let currentDate = new Date()
-    let slotTimeDay = new Date()
-    slotTimeDay.setHours(+`${slot.slice(0, 2)}`, +`${slot.slice(-2)}`, 0)
-    if (slotTimeDay > currentDate) this.validSlot=true
-    else this.validSlot=false
-
+  updateSlot = (slot: object) => {
+    this.newSlotEvent.emit(slot)
   }
 
 }

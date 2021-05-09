@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, DoCheck, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { $ } from 'protractor';
 
 @Component({
@@ -107,7 +107,7 @@ monthSelector = (month: number) => {
     }
 }
 
-  addNewDate() {
+  addNewDate=()=> {
   
   this.newDateEvent.emit(`${this.preSelectedYear}-${this.preSelectedMonth}-${this.preSelectedDay}`);
 }

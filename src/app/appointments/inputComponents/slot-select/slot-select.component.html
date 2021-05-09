@@ -1,9 +1,9 @@
       <mat-form-field appearance="fill" class="select-panel w-100">
         <mat-label>Available Time Slots</mat-label>
         <mat-select  *ngIf="arrayOfSlots"  [(value)]="preSelectedSlotNumber">
-          <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" (click)="slotSelector(slot.appointmentStartTime)">
+          <mat-option *ngFor="let slot of arrayOfSlots" [value]="slot.slotNumber" (click)="updateSlot(slot)">
             Slot Number-{{slot.slotNumber}} ({{slot.appointmentStartTime}} - {{slot.appointmentEndTime}})  {{slot.availableBookings}} Seats Available   
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <p class="sText" *ngIf="!validSlot"> Sorry you can not select a passed slot.</p>
+      

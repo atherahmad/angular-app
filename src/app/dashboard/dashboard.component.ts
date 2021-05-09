@@ -68,10 +68,11 @@ export class DashboardComponent{
         })
         dialogRef.
             afterClosed().subscribe(result => {
+                if(result){
             if(result.status == 'success'){
                 this.appointmentsList = this.appointmentsList.filter(appointment => appointment._id != result.id);
                 console.log("appointments after filter", this.appointmentsList)
-            }
+            }}
           });
         }
     }
