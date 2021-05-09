@@ -3,7 +3,7 @@
   <div class="col-4">
     <mat-form-field appearance="fill" class="w-100">
         <mat-label>Year</mat-label>
-        <mat-select (selectionChange)="yearSelector($event.value)" [(ngModel)]="preSelectedYear">
+        <mat-select (selectionChange)=addNewDate() [(ngModel)]="preSelectedYear" #newYear>
           <mat-option *ngFor="let year of years;" [value]="year">
             {{year}}
           </mat-option>
@@ -11,11 +11,10 @@
     </mat-form-field>
   </div>
 
-
   <div class="col-4">
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Month</mat-label>
-      <mat-select (selectionChange)="monthSelector($event.value)" [(ngModel)]="preSelectedMonth">
+      <mat-select (selectionChange)=addNewDate() [(ngModel)]="preSelectedMonth" #newMonth>
         <mat-option *ngFor="let month  of monthsOfYear; let i=index" [value]="month.id">
           {{month.name}}
         </mat-option>
@@ -26,7 +25,7 @@
   <div class="col-4">
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Day</mat-label>
-      <mat-select (selectionChange)="daySelector($event.value)" [(ngModel)]="preSelectedDay">
+      <mat-select  (selectionChange)=addNewDate() [(ngModel)]="preSelectedDay" #newDay>
           <mat-option *ngFor="let day of daysOfMonth" [value]="day">
             {{day}}
           </mat-option>

@@ -1,5 +1,7 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { dateValidator } from 'src/app/shared/date-checker';
 import { AppointmentDetailsService } from '../appointment-details.service';
 
 @Component({
@@ -17,6 +19,8 @@ export class EditAppointmentComponent implements OnInit {
   preSelectedStoreId: string;
   preSelectedSlotNumber:number;
   appointmentId: string;
+  validDate: boolean = true;
+  holiday: boolean = false;
   
 
 
@@ -41,6 +45,12 @@ export class EditAppointmentComponent implements OnInit {
 
   cancelUpdate = () => this.route.navigateByUrl("/dashboard")
   
-  updateAppointment=()=>console.log("update appointment")
+  updateAppointment = () => console.log("update appointment")
+  
+  newDate = (date: string) => {
+    let dateCheckResponse = dateValidator(date);
+    this.validDate = dateCheckResponse.validDate;
+    this.holiday = dateCheckResponse.holiday;
+  }
 
 }

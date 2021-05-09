@@ -10,7 +10,8 @@ export class SlotSelectComponent implements OnInit {
 
   arrayOfSlots: Array<any> = [];
   @Input() storeId: string;
-  @Input() preSelectedSlotNumber:number;
+  @Input() preSelectedSlotNumber: number;
+  validSlot: boolean = true;
   constructor(private _storeSlotsService: StoreslotsService) { }
 
   ngOnInit() {
@@ -20,6 +21,14 @@ export class SlotSelectComponent implements OnInit {
             })
     const model: string = this.storeId;
     this._storeSlotsService.getSlots(model).subscribe()
+  }
+  slotSelector = (slot: string) => {
+    let currentDate = new Date()
+    let slotTimeDay = new Date()
+    slotTimeDay.setHours(+`${slot.slice(0, 2)}`, +`${slot.slice(-2)}`, 0)
+    if (slotTimeDay > currentDate) this.validSlot=true
+    else this.validSlot=false
+
   }
 
 }
