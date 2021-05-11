@@ -109,6 +109,6 @@ monthSelector = (month: number) => {
 
   addNewDate=()=> {
   
-  this.newDateEvent.emit(`${this.preSelectedYear}-${this.preSelectedMonth}-${this.preSelectedDay}`);
+  this.newDateEvent.emit(`${this.preSelectedDay}/${this.preSelectedMonth}/${this.preSelectedYear}`);
 }
 }

@@ -2,9 +2,9 @@
 <div class="container">
     <div class="row justify-content-center mt-3">
         <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
-            <app-store-select *ngIf="preSelectedStoreName" [preSelectedStoreName]="preSelectedStoreName" [preSelectedStoreId]="preSelectedStoreId"></app-store-select>
-            <app-date-select *ngIf="preSelectedDate" [preSelectedDate]="preSelectedDate" (newDateEvent)="newDate($event)"></app-date-select>
-            <app-slot-select *ngIf="preSelectedStoreId" [storeId]="preSelectedStoreId" [preSelectedSlotNumber]="preSelectedSlotNumber" (newSlotEvent)="newSlotSelector($event)"></app-slot-select>
+            <app-store-select *ngIf="preSelectedAppointment" [preSelectedStoreName]="preSelectedAppointment.storeName" [preSelectedStoreId]="preSelectedAppointment.storeId"></app-store-select>
+            <app-date-select *ngIf="preSelectedAppointment" [preSelectedDate]="preSelectedAppointment.appointmentDate" (newDateEvent)="newDate($event)"></app-date-select>
+            <app-slot-select *ngIf="preSelectedAppointment" [storeId]="preSelectedAppointment.storeId" [preSelectedSlotNumber]="preSelectedAppointment.appoointmentSlot" (newSlotEvent)="newSlotSelector($event)"></app-slot-select>
             <p class="sText"><span *ngIf="!validDate"> Please select a valid date</span><span *ngIf="!validDate && holiday"> & </span> <span *ngIf="holiday">It's a Sunday please choose another day.</span></p>
             <p class="sText" *ngIf="!validSlot"> Sorry you can not select a passed slot.</p>
             <button class="myOrangeButton-lg w-100 mt-3" (click)="updateAppointment()">Update</button>

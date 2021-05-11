@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dateValidator } from 'src/app/shared/date-checker';
 import { AppointmentDetailsService } from '../appointment-details.service';
+import { AppoinmentInterface } from './appoinment-interface';
 import { SlotInterface } from './slot-interface';
 
 @Component({
@@ -14,17 +15,14 @@ export class EditAppointmentComponent implements OnInit {
   boxColor: string = "#11213b";
   headingText: string = "Edit Appointment";
 
-  preSelectedStoreName: string;
-  preSelectedDate: string;
+
   newSelectedDate: string;
-  preSelectedStoreId: string;
-  preSelectedSlotNumber:number;
   appointmentId: string;
   validDate: boolean = true;
   holiday: boolean = false;
   validSlot: boolean = true;
+  preSelectedAppointment: AppoinmentInterface;
   
-
 
   constructor(private _appointmentDetailService: AppointmentDetailsService, private activatedRoute:ActivatedRoute, private route:Router) {
 
@@ -36,10 +34,9 @@ export class EditAppointmentComponent implements OnInit {
     this._appointmentDetailService.getAppointmentDetails(this.appointmentId)
       .subscribe((data:any) => {
         if (data.status == "success") {
-          this.preSelectedStoreName = data.message.storeName;
-          this.preSelectedDate = data.message.appointmentDate;
-          this.preSelectedSlotNumber = data.message.appoointmentSlot;
-          this.preSelectedStoreId = data.message.storeId;
+          
+          this.preSelectedAppointment = data.message
+          console.log(this.preSelectedAppointment)
           
         }
       })
@@ -47,25 +44,54 @@ export class EditAppointmentComponent implements OnInit {
 
   cancelUpdate = () => this.route.navigateByUrl("/dashboard")
   
-  updateAppointment = () => console.log("update appointment")
+  updateAppointment = () => {
+    if(this.validDate && !this.holiday && this.validSlot)
+      console.log("update appointment", this.preSelectedAppointment)
+    
+    else console.log("invalid data correct the errors", this.preSelectedAppointment)
+  }
   
   newDate = (date: string) => {
-    this.newSelectedDate = date;
+    this.preSelectedAppointment.appointmentDate = date;
     let dateCheckResponse = dateValidator(date);
     this.validDate = dateCheckResponse.validDate;
     this.holiday = dateCheckResponse.holiday;
   }
 
   newSlotSelector = (slot: SlotInterface) => {
-    console.log(this.preSelectedDate, "in new slot")
-    let currentDate = new Date()
-    let slotTimeDay = new Date()
-    let selectedDateArray=this.newSelectedDate? this.newSelectedDate.split("/"): this.preSelectedDate.split("/")
- 
-    let selectAppointmentDate = new Date(+selectedDateArray[2], +selectedDateArray[1], +selectedDateArray[0])
-    slotTimeDay.setHours(+`${slot.appointmentStartTime.slice(0, 2)}`, +`${slot.appointmentStartTime.slice(-2)}`, 0)
-    if (slotTimeDay > currentDate && currentDate.getDate()==selectAppointmentDate.getDate()) this.validSlot=true
-    else this.validSlot=false 
+    
+    let currentDate = new Date();
+    this.preSelectedAppointment.appoointmentSlot = slot.slotNumber;
+    let dateArray = this.preSelectedAppointment.appointmentDate.split("/");
+    let selectedAppointmentDate = new Date(+dateArray[2], +dateArray[1]-1, +dateArray[0]);
+    selectedAppointmentDate.setHours(+`${slot.appointmentStartTime.slice(0, 2)}`);
+    selectedAppointmentDate.setMinutes(+`${slot.appointmentStartTime.slice(-2)}`);
+
+  if (selectedAppointmentDate.getFullYear() > currentDate.getFullYear()) this.validSlot=true
+    else if (selectedAppointmentDate.getFullYear() < currentDate.getFullYear()) this.validSlot=false
+      else{
+        if (selectedAppointmentDate.getMonth() > currentDate.getMonth()) this.validSlot=true
+        else if (selectedAppointmentDate.getMonth() < currentDate.getMonth()) this.validSlot=false
+
+        else {
+          if (selectedAppointmentDate.getDate() > currentDate.getDate()) this.validSlot=true
+          else if (selectedAppointmentDate.getDate() < currentDate.getDate()) this.validSlot=false
+
+          else {
+            if (selectedAppointmentDate.getHours() > currentDate.getHours()) this.validSlot=true
+              else if (selectedAppointmentDate.getHours() < currentDate.getHours()) this.validSlot=false
+            else {
+                  if (selectedAppointmentDate.getMinutes() > currentDate.getMinutes()) this.validSlot=true
+                    else if (selectedAppointmentDate.getMinutes() < currentDate.getMinutes()) this.validSlot=false
+            }
+        }
+
+      }
+
+
+      }
+
+  
   }
 
 }

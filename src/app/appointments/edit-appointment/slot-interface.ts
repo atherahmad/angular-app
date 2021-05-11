@@ -4,5 +4,3 @@ export interface SlotInterface {
     availableBookings: number,
     slotNumber: number
 }
-
-
