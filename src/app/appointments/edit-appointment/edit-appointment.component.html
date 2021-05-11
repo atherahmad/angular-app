@@ -9,6 +9,8 @@
             <p class="sText" *ngIf="!validSlot"> Sorry you can not select a passed slot.</p>
             <button class="myOrangeButton-lg w-100 mt-3" (click)="updateAppointment()">Update</button>
             <button class="myBlueButton-lg w-100 mt-3" (click)="cancelUpdate()">Cancel</button>
+            <mat-progress-bar class="mt-3" mode="indeterminate" *ngIf="requestInProcess" ></mat-progress-bar>
+            <p class="sText mt-3" *ngIf="updateError">{{errorText}}</p>
         </div>
     </div>
 </div>
