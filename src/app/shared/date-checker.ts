@@ -14,6 +14,8 @@
                         else if(newDate.getDate() < currentDate.getDate()) response.validDate=false
                             else response.validDate = true
      
+     console.log(newDate.getMonth(), currentDate.getMonth(), "month in date validator")
+     console.log(newDate.getDate(), currentDate.getDate(), "date in date validator")
      if (newDate.getUTCDay() < 6) response.holiday = false
         else response.holiday = true;
      
