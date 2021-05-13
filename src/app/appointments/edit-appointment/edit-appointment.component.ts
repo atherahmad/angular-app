@@ -81,7 +81,6 @@ export class EditAppointmentComponent implements OnInit {
     this.validDate = dateCheckResponse.validDate;
     this.holiday = dateCheckResponse.holiday;
     this.validSlot = slotValidator(this.preSelectedAppointment, this.selectedSlot)
-    console.log(this.holiday, this.validDate)
   }
 
   newSlotSelector = (slot: SlotInterface) => {

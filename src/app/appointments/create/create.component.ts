@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthenticationService } from "src/app/services/auth/authentication.service";
 import { StoreslotsService } from "src/app/services/store/storeslots.service";
 import { StoreService } from "../../services/store/store.service";
 import { CreateAppointmentService } from "./create-appointment.service";
@@ -9,7 +10,7 @@ import { CreateAppointmentService } from "./create-appointment.service";
     templateUrl: './create.component.html',
     styleUrls:['./create.component.css']
 })
-export class CreateAppointment{
+export class CreateAppointment implements OnInit {
 
     headingText: string = "Create Appointment";
     boxColor: string = "#11213b";
@@ -27,7 +28,8 @@ export class CreateAppointment{
     appointmentCreated: boolean = true
     storeName: string = "";
     slotName: string = "";
-
+    appointmentHolder: string;
+    personsPerSlot: number;
     formError: boolean = false;
     responseError: boolean = false;
     requestInProcess: boolean = false;
@@ -48,7 +50,7 @@ export class CreateAppointment{
         { name: "Dec", id: 12 }
     ];
 
-    constructor(private _storeService: StoreService, private _storeSlotsService: StoreslotsService, private _createAppointmentService: CreateAppointmentService, private router:Router) {
+    constructor(private _storeService: StoreService, private _storeSlotsService: StoreslotsService, private _createAppointmentService: CreateAppointmentService, private router:Router, private _authService: AuthenticationService) {
         for (let i = 1; i < 31; i++){
             this.years.push(2020 + i);
         }
@@ -61,14 +63,17 @@ export class CreateAppointment{
 
     }//
     ngOnInit() {
+        
         this._storeService.storeListObserver$
             .subscribe(data => {
                 this.stores = data
             });
-            this._storeSlotsService.storeSlotsObserver$
-            .subscribe(data => { 
-                this.arrayOfSlots=data
-            })
+        
+        this._storeSlotsService.storeSlotsObserver$
+            .subscribe(data => {
+                this.arrayOfSlots = data
+            });
+        
         this._createAppointmentService.appointmentObserver$
             .subscribe(data => {
                 if (data == "success") {
@@ -79,9 +84,11 @@ export class CreateAppointment{
                     this.responseError = true;
                     this.responseErrorText = data;
                 }
-            })
+            });
         
+
     }
+
 
     yearSelector = (year:string) => {
         if (+year % 4 == 1) this.leapYearCheck = true;
@@ -117,10 +124,13 @@ export class CreateAppointment{
         this.selectedDay = +day;
     }
 
-    getStoreName = (storeName:string) => this.storeName=storeName;
+     getStoreName = (storeName: string, personLimit:number) => {
+        this.storeName = storeName;
+        this.personsPerSlot = personLimit
+    }; 
+        
     getSlotName = (startTime: number, endTime: number) => {
         this.slotName = `${startTime} - ${endTime}`
-        console.log(this.slotName)
     };
 
     getStoreSlots = (storeId:string) => {
@@ -135,9 +145,9 @@ export class CreateAppointment{
 
     slotSelector = (slotNumber: string) => this.slotNumber = slotNumber
 
-
     submitHandler = () => {
-        const modal=
+        console.log(this.personsPerSlot, "person per slot")
+        let modal=
         {
             slotNumber: this.slotNumber,
             selectedYear:this.selectedSlotYear,
@@ -145,13 +155,16 @@ export class CreateAppointment{
             selectedDay:this.selectedDay,
             selectedStore: this.selectedStoreId,
             storeName: this.storeName,
-            slotName:this.slotName
+            slotName: this.slotName,
+            personsPerSlot:this.personsPerSlot
         }
         const myObserver = {
             next: x => x,
             error: err=> err
         }
-        if (!Object.keys(modal).every((key) => modal[key]))
+        console.log(this.appointmentHolder, "appointment holed")
+        if (!Object.keys(modal).every((key) => modal[key]
+        ))
         return this.formError=true;
         else this.formError = false;
 

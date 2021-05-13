@@ -8,7 +8,7 @@
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Select Store</mat-label>
                 <mat-select (selectionChange)="getStoreSlots( $event.value)" *ngIf="stores">
-                  <mat-option *ngFor="let store of stores"   [value]="store._id"  (click)="getStoreName(store.storeName)">
+                  <mat-option *ngFor="let store of stores"   [value]="store._id"  (click)="getStoreName(store.storeName,store.personsPerSlot)">
                     {{store.storeName}}
                   </mat-option>
                 </mat-select>
@@ -20,7 +20,7 @@
               <mat-form-field appearance="fill" class=" w-100">
                 <mat-label>Year</mat-label>
                 <mat-select (selectionChange)="yearSelector($event.value)">
-                  <mat-option *ngFor="let year of years" [value]="year">
+                  <mat-option *ngFor="let year of years" [value]="year" >
                     {{year}}
                   </mat-option>
                 </mat-select>
